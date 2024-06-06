@@ -16,9 +16,7 @@ const constant = {
    categoryUri: function (domain) {
       return `${domain}/wp-json/wp/v2/categories`;
    },
-   atpNoteUri: function (year = 2024) {
-      return `https://www.atptour.com/en/media/daily-media-notes?year=${year}`;
-   },
+   atpNoteUri: "https://www.atptour.com/en/media/daily-media-notes",
    postExistUri: function (domain, slug = "") {
       return `${domain}/wp-json/wp/v2/posts?status=any&slug=${slug}`;
    },

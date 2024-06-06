@@ -127,9 +127,8 @@ async function xhrPostRequest(url, token = "", body = {}, type = "text") {
             "Content-Type": "application/json",
             Authorization: `Basic ${token}`,
             'Cache-Control': 'no-cache, no-store, must-revalidate', // Add Cache-Control header
-            'Pragma': 'no-cache', // HTTP 1.0 fallback for no-cache
-            'Expires': '0', // Expire immediately,
-            "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+            'Pragma': 'no-cache',
+            'Expires': '0'
          },
          body: JSON.stringify(body)
       });
@@ -145,9 +144,7 @@ async function xhrGetRequest(url, token = "", type = "text") {
       const response = await fetch(url, {
          method: "GET",
          headers: {
-            Authorization: `Basic ${token}`,
-            Accept: " */*",
-            "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+            Authorization: `Basic ${token}`
          },
       });
       return type === "json" ? await response.json() : await response.text();
