@@ -125,7 +125,10 @@ async function xhrPostRequest(url, token = "", body = {}, type = "text") {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
-            Authorization: `Basic ${token}`
+            Authorization: `Basic ${token}`,
+            'Cache-Control': 'no-cache, no-store, must-revalidate', // Add Cache-Control header
+            'Pragma': 'no-cache', // HTTP 1.0 fallback for no-cache
+            'Expires': '0' // Expire immediately
          },
          body: JSON.stringify(body)
       });
