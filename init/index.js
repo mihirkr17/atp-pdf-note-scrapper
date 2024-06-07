@@ -68,6 +68,7 @@ async function init(infos, mediaNoteUrls) {
             // Extracting match details from pdf contents | basically it returns [Array];
             const contents = extractMatchInfo(pdfTextContents);
 
+
             if (!Array.isArray(contents) || contents.length === 0) {
                continue;
             }

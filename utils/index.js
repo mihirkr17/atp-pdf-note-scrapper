@@ -216,6 +216,7 @@ function extractMatchInfo(text) {
    // console.log(text?.replace(/@ATPMediaInfo[\s\S]*?Page \d+ of \d+/gi, "")?.split("\n"));
    const splittedTexts = text?.split("\n")?.filter(e => e?.trim().length !== 0); //?.filter(e => !regddd.test(e))?.filter(e => !reg2.test(e));
 
+   // console.log(splittedTexts);
    let mainResult = "", startRecording = false, headRecord = false;
 
 
@@ -224,7 +225,7 @@ function extractMatchInfo(text) {
    // console.log(splittedTexts);
    let dateString;
    let placeString;
-   let eventNameString;
+   let eventNameString = "";
    let eventDayString = "";
 
    for (let i = 0; i < splittedTexts.length; i++) {
@@ -232,18 +233,19 @@ function extractMatchInfo(text) {
       const line = splittedTexts[i].trim(); //?.replace(/@ATPMediaInfo.*For the latest stats/g, "")?.replace(/Page \d of \d/gi, "");
 
 
-      if ((/(ATP MEDIA NOTES|\d{4} ROLAND GARROS(?:\s\w*)?$)/).test(line)) {
-         eventNameString = line;
+      if ((/(ATP MEDIA NOTES|\d{4} ROLAND GARROS)/g).test(line)) {
+         let evLine = line && line?.match(/\d{4} ROLAND GARROS/i);
+         eventNameString = evLine?.[0] || line?.replace(/[–|-]?\s+ATP MEDIA NOTES/g, "") || "";
       }
 
       if ((/(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[, -]? \d+ [A-Z][a-z]+ \d{4}/i).test(line)) {
          let dates = line.match(/[A-Z][a-z]+ \d+ [A-Z][a-z]+ \d{4}/);
-         dateString = dates[0];
+         dateString = dates?.[0];
       }
 
       if ((/DAY \d+/).test(line)) {
-         let day = line.match(/DAY \d+/);
-         eventDayString = day[0];
+         let day = line?.match(/DAY \d+/);
+         eventDayString = day?.[0];
       }
 
       if ((/(France|Switzerland|Argentina|Australia|Austria|Belgium|Brazil|Canada|China|Croatia|Germany|India|Italy|Japan|Mexico|Morocco|Netherlands|New Zealand|Portugal|Qatar|Russia|Spain|Sweden|UAE|United Kingdom|United States) \|/i).test(line)) {
@@ -287,11 +289,11 @@ function extractMatchInfo(text) {
    const eventDate = dateString;
    placeString = placeString?.split(" | ");
    const eventAddress = placeString?.slice(0, placeString.length - 1)?.join(", ");
-   const eventName = eventNameString?.split(/[–|-]/)[0];
+   const eventName = eventNameString;
    const eventHeadingTwo = `${eventDay} - ${eventDate}, ${eventAddress}.`
 
    let contentArray = mainResult?.replace(/@ATPMediaInfo[\s\S]*?Page \d+ of \d+/gi, "")?.replace(/For the latest stats[\s\S]*?.com/gi, "");
-   contentArray = contentArray?.split("breakHere").filter(e => e) || [];
+   contentArray = contentArray?.split("breakHere")?.filter(e => e) || [];
 
    const result = [];
 
@@ -330,7 +332,6 @@ function extractMatchInfo(text) {
          });
       }
    }
-
    return result;
 }
 
