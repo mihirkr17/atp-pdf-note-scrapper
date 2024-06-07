@@ -33,18 +33,6 @@ const { getPdfLinks } = require("./services");
 
 (async () => {
    try {
-
-
-      // const encodedString = Buffer.from(`JamesMorris365:h2EE Q0HA pD2l xdGe Ct6M xBQu`, "utf8").toString("base64");
-      // console.log(encodedString);
-      // // const decodedString = Buffer.from("SmFtZXMgTW9ycmlzOnNLZFIgZ0MxRSBCT3pMIDFZWjAgd2Q5WCBVTVlW", 'base64').toString('utf8');
-      // // console.log('Decoded:', decodedString);
-
-      // return
-
-
-      // console.log(Buffer.from(`JamesMorris365:h2EE Q0HA pD2l xdGe Ct6M xBQu`, "utf8").toString("base64"));
-
       if (!constant?.postStatus || !constant?.postStatusAll.includes(constant?.postStatus)) {
          throw new Error(`ERROR: Post status must be set as "POST_STATUS=publish or future or draft or pending or private" in .env`);
       }
@@ -83,15 +71,15 @@ const { getPdfLinks } = require("./services");
             authorId: constant?.authorIdSg,
             chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
          },
-         {
-            id: 2,
-            siteName: "https://www.matchstat.com/",
-            nick: "ms",
-            domain: constant?.domainMs,
-            authToken: constant?.authTokenMs,
-            authorId: constant?.authorIdMs,
-            chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
-         }
+         // {
+         //    id: 2,
+         //    siteName: "https://www.matchstat.com/",
+         //    nick: "ms",
+         //    domain: constant?.domainMs,
+         //    authToken: constant?.authTokenMs,
+         //    authorId: constant?.authorIdMs,
+         //    chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
+         // }
       ];
 
 
