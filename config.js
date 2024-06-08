@@ -18,7 +18,7 @@ const constant = {
    },
    atpNoteUri: "https://www.atptour.com/en/media/daily-media-notes",
    postExistUri: function (domain, slug = "") {
-      return `${domain}/wp-json/wp/v2/posts?status=any&slug=${slug}`;
+      return `${domain}/wp-json/wp/v2/posts?slug=${slug}&status=any&hshfk=jd`; //status=any&
    },
    paraphrasedCommand: function (language, content) {
       return `Rewrite this in ${language}, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: ${content}`;

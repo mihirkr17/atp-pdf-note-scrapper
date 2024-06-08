@@ -26,7 +26,7 @@ translate.key = process.env.LIBRE_TRANSLATE_KEY;
 
 async function init(infos, mediaNoteUrls) {
    try {
-      const resources = infos?.nick === "sg" ? postTemplateSg : postTemplateMs;
+      const resources = infos?.nick === "sg" ? postTemplateSg : postTemplateMs.slice(0, 1);
 
       if (!resources || !Array.isArray(resources)) {
          throw new Error(`Resource not found.`);
@@ -77,7 +77,7 @@ async function init(infos, mediaNoteUrls) {
 
             consoleLogger(`Pdf downloaded and extracted contents successfully.`);
 
-            for (const content of contents) {
+            for (const content of contents.slice(0, 1)) {
                const playerOne = content?.player1;
                const playerTwo = content?.player2;
                const player1slug = content?.player1slug;
@@ -104,16 +104,16 @@ async function init(infos, mediaNoteUrls) {
                try {
                   let playerOneMedia = {}, playerTwoMedia = {};
 
-                  playerOneMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, player1slug), token);
-                  playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, player2slug), token);
+                  // playerOneMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, player1slug), token);
+                  // playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, player2slug), token);
 
-                  if (!playerOneMedia?.mediaId) {
-                     playerOneMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
-                  }
+                  // if (!playerOneMedia?.mediaId) {
+                  //    playerOneMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
+                  // }
 
-                  if (!playerTwoMedia?.mediaId) {
-                     playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
-                  }
+                  // if (!playerTwoMedia?.mediaId) {
+                  //    playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
+                  // }
 
 
                   const imageWrapperHtml = imgWrapper([playerOneMedia, playerTwoMedia], playerOneSurname, playerTwoSurname, infos?.nick);
@@ -159,6 +159,9 @@ async function init(infos, mediaNoteUrls) {
                         consoleLogger(`S-${postCounter}. Post Slug: ${slug}.`);
 
                         const isUniquePost = await checkExistingPostOfWP(constant?.postExistUri(infos?.domain, slug), token);
+
+                        console.log(isUniquePost);
+                        return
 
                         if (isUniquePost) {
                            consoleLogger(`S-${postCounter}. Post already exists.`);

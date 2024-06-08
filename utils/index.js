@@ -2,6 +2,7 @@ const fs = require("fs");
 const https = require("https");
 const fetch = (...args) =>
    import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const axios = require("axios");
 
 const delay = (ms = 2000) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -142,11 +143,13 @@ async function xhrPostRequest(url, token = "", body = {}, type = "text") {
 async function xhrGetRequest(url, token = "", type = "text") {
    try {
       const response = await fetch(url, {
+         redirect: "manual",
          method: "GET",
          headers: {
             Authorization: `Basic ${token}`
          },
       });
+
       return type === "json" ? await response.json() : await response.text();
    } catch (error) {
       throw error;

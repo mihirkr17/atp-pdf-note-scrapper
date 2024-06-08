@@ -22,14 +22,16 @@ async function getPdfLinks(url) {
 
 async function checkExistingPostOfWP(url, token) {
    return retryOperation(async () => {
+
       const data = await xhrGetRequest(url, token, "json");
+
+      console.log(data);
 
       if (!Array.isArray(data)) {
          throw new Error(`Invalid response.`);
       }
 
       return data.length >= 1;
-
    })();
 };
 

@@ -33,6 +33,9 @@ const { getPdfLinks } = require("./services");
 
 (async () => {
    try {
+
+      // consoleLogger(Buffer.from("wojtek.kolan@icloud.com:flzP pt8R RuiD Ot4U 2Q7O b0SA").toString("base64"));
+      // return
       if (!constant?.postStatus || !constant?.postStatusAll.includes(constant?.postStatus)) {
          throw new Error(`ERROR: Post status must be set as "POST_STATUS=publish or future or draft or pending or private" in .env`);
       }
@@ -94,7 +97,7 @@ const { getPdfLinks } = require("./services");
       }
 
       // changed
-      mediaNoteUrls = mediaNoteUrls.slice(0, 1);
+      mediaNoteUrls = mediaNoteUrls.slice(1, 2);
       // let mediaNoteUrls = ["/-/media/2c1974484f09488e8d9b510b14b9b69d.pdf"]
 
 
