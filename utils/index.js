@@ -127,9 +127,7 @@ async function xhrPostRequest(url, token = "", body = {}, type = "text") {
          headers: {
             "Content-Type": "application/json",
             Authorization: `Basic ${token}`,
-            'Cache-Control': 'no-cache, no-store, must-revalidate', // Add Cache-Control header
-            'Pragma': 'no-cache',
-            'Expires': '0'
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
          },
          body: JSON.stringify(body)
       });
@@ -143,11 +141,10 @@ async function xhrPostRequest(url, token = "", body = {}, type = "text") {
 async function xhrGetRequest(url, token = "", type = "text") {
    try {
       const response = await fetch(url, {
-         redirect: "manual",
          method: "GET",
          headers: {
             Authorization: `Basic ${token}`
-         },
+         }
       });
 
       return type === "json" ? await response.json() : await response.text();
