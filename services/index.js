@@ -26,6 +26,7 @@ async function checkExistingPostOfWP(url, token) {
       const data = await xhrGetRequest(url, token, "json");
 
       if (!Array.isArray(data)) {
+         console.log(data);
          throw new Error(`Invalid response.`);
       }
 

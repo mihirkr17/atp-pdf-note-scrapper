@@ -76,7 +76,7 @@ const { getPdfLinks } = require("./services");
          // },
          {
             id: 2,
-            siteName: "https://www.matchstat.com/",
+            siteName: "https://matchstat.com/",
             nick: "ms",
             domain: constant?.domainMs,
             authToken: constant?.authTokenMs,
