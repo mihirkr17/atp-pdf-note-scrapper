@@ -1,5 +1,6 @@
 const { constant } = require("../config");
-const { postTemplateSg, postTemplateMs } = require("../resource/postTemplate");
+const matchstats = require("../templates/matchstats");
+const stevegtennis = require("../templates/stevegtennis");
 const {
    createPostOfWP,
    getPostTagIdsOfWP,
@@ -8,6 +9,7 @@ const {
    downloadPDF,
    paraphraseContents
 } = require("../services");
+
 
 const { consoleLogger, extractMatchInfo,
    imgWrapper,
@@ -26,7 +28,7 @@ translate.key = process.env.LIBRE_TRANSLATE_KEY;
 
 async function init(infos, mediaNoteUrls) {
    try {
-      const resources = infos?.nick === "sg" ? postTemplateSg : postTemplateMs.slice(0, 1);
+      const resources = infos?.nick === "sg" ? stevegtennis : matchstats.slice(0, 1);
 
       if (!resources || !Array.isArray(resources)) {
          throw new Error(`Resource not found.`);
@@ -77,7 +79,7 @@ async function init(infos, mediaNoteUrls) {
 
             consoleLogger(`Pdf downloaded and extracted contents successfully.`);
 
-            for (const content of contents.slice(0, 1)) {
+            for (const content of contents.slice(1, 2)) {
                const playerOne = content?.player1;
                const playerTwo = content?.player2;
                const player1slug = content?.player1slug;
@@ -153,10 +155,12 @@ async function init(infos, mediaNoteUrls) {
                               ?.replace("#eventYear", eventYear);
                         }
 
-                        const title = capitalizeFirstLetterOfEachWord(newTitle);
+                        let title = capitalizeFirstLetterOfEachWord(newTitle);
+                        title = title?.replace("Atp", "ATP");
                         consoleLogger(`S-${postCounter}. Post Title: ${title}.`);
                         const slug = slugMaker(title);
                         consoleLogger(`S-${postCounter}. Post Slug: ${slug}.`);
+
 
                         const isUniquePost = await checkExistingPostOfWP(constant?.postExistUri(infos?.domain, slug), token);
 
