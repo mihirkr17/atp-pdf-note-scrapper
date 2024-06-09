@@ -97,7 +97,7 @@ const { getPdfLinks } = require("./services");
       }
 
       // changed
-      mediaNoteUrls = mediaNoteUrls.slice(1, 2);
+      mediaNoteUrls = mediaNoteUrls.slice(0, 1);
       // let mediaNoteUrls = ["/-/media/2c1974484f09488e8d9b510b14b9b69d.pdf"]
 
 
