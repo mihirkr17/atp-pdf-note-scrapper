@@ -40,9 +40,9 @@ const matchstats = [
          <h3>My Conclusion / Prediction:</h3>
          <p>
             <b>My pick is that ${playerOneSurname} will win.</b>
-            Matchstat.com has an Artificial Intelligence (Ai) prediction model that is trained on all professional ATP and WTA past matches. 
-            To find out who our model thinks will win for ${playerOne} vs ${playerTwo}, have a look at the prediction here:
+            Matchstat.com has an Artificial Intelligence (Ai) prediction model that is trained on all professional ATP and WTA past matches.
             <br/>
+            To find out who our model thinks will win for ${playerOne} vs ${playerTwo}, have a look at the prediction here:
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>Matchstat.com ${playerOne} vs ${playerTwo} prediction.</b>
             </a> 
