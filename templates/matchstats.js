@@ -90,8 +90,8 @@ const matchstats = [
             <p>
                <b>Mi elección es que ganará ${playerOneSurname}.</b>
                Matchstat.com tiene un modelo de Pronósticos de Inteligencia Artificial (IA) que se entrena en todos los partidos profesionales anteriores de la ATP y la WTA. 
-               Para saber quién cree nuestro modelo que ganará en ${playerOne} frente a ${playerTwo}, echa un vistazo aquí:
                <br/>
+               Para saber quién cree nuestro modelo que ganará en ${playerOne} frente a ${playerTwo}, echa un vistazo aquí:
                <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                   <b>Pronóstico de Matchstat.com ${playerOne} vs ${playerTwo}.</b>
                </a> 
@@ -139,8 +139,8 @@ const matchstats = [
             <p>
                <b>Minha escolha é que ${playerOneSurname} vencerá.</b>
                Matchstat.com possui um modelo de Palpites de Inteligência Artificial (IA) que é treinado em todas as partidas profissionais anteriores da ATP e WTA. 
-               Para descobrir quem nosso modelo acha que ganhará ${playerOne} vs ${playerTwo}, dê uma olhada aqui:
                <br/>
+               Para descobrir quem nosso modelo acha que ganhará ${playerOne} vs ${playerTwo}, dê uma olhada aqui:
                <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                   <b>Palpites de ${playerOne} vs ${playerTwo} do Matchstat.com.</b>
                </a> 
@@ -189,8 +189,8 @@ const matchstats = [
             <p>
                <b>Mon choix est que ${playerOneSurname} gagnera.</b>
                Matchstat.com dispose d'un modèle de pronostics d'intelligence artificielle (IA) qui est formé sur tous les matchs professionnels passés de l'ATP et de la WTA. 
-               Pour savoir qui, selon notre modèle, gagnera pour ${playerOne} contre ${playerTwo}, jetez un œil ici :
                <br/>
+               Pour savoir qui, selon notre modèle, gagnera pour ${playerOne} contre ${playerTwo}, jetez un œil ici :
                <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                   <b>Pronostics Matchstat.com ${playerOne} contre ${playerTwo}.</b>
                </a> 
@@ -239,8 +239,8 @@ const matchstats = [
             <p>
                <b>Mein Tipp ist, dass ${playerOneSurname} gewinnt.</b>
                Matchstat.com verfügt über ein Vorhersagemodell mit künstlicher Intelligenz (KI), das auf allen vergangenen professionellen ATP- und WTA-Spielen trainiert wird. 
-               Um herauszufinden, wer laut unserem Modell für ${playerOne} vs. ${playerTwo} gewinnen wird, schauen Sie hier:
                <br/>
+               Um herauszufinden, wer laut unserem Modell für ${playerOne} vs. ${playerTwo} gewinnen wird, schauen Sie hier:
                <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                   <b>Matchstat.com ${playerOne} vs ${playerTwo} Wett-Tipps & Prognosen.</b>
                </a> 
@@ -290,8 +290,8 @@ const matchstats = [
             <p>
                <b>La mia scelta è che ${playerOneSurname} vincerà.</b>
                Matchstat.com dispone di un modello di previsione dell'intelligenza artificiale (Ai) addestrato su tutte le partite passate dell'ATP e WTA professionistiche. 
-               Per scoprire chi secondo il nostro modello vincerà ${playerOne} contro ${playerTwo}, dai un'occhiata qui:
                <br/>
+               Per scoprire chi secondo il nostro modello vincerà ${playerOne} contro ${playerTwo}, dai un'occhiata qui:
                <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                   <b>Pronostico di Matchstat.com ${playerOne} vs ${playerTwo}.</b>
                </a> 
@@ -340,8 +340,8 @@ const matchstats = [
           <p>
              <b>Mój typ jest taki, że wygra ${playerOneSurname}.</b>
              Matchstat.com posiada model przewidywania sztucznej inteligencji (Ai), który jest trenowany na wszystkich przeszłych profesjonalnych meczach ATP i WTA. 
-             Aby dowiedzieć się, kto według naszego modelu wygra walkę ${playerOne} vs ${playerTwo}, spójrz tutaj:
              <br/>
+             Aby dowiedzieć się, kto według naszego modelu wygra walkę ${playerOne} vs ${playerTwo}, spójrz tutaj:
              <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                 <b>Prognozy Matchstat.com ${playerOne} vs ${playerTwo}.</b>
              </a> 
@@ -390,8 +390,8 @@ const matchstats = [
          <p>
             <b>Mijn keuze is dat ${playerOneSurname} zal winnen.</b>
             Matchstat.com heeft een voorspellingsmodel voor kunstmatige intelligentie (Ai) dat is getraind op alle professionele ATP- en WTA-wedstrijden uit het verleden. 
-            Om erachter te komen wie volgens ons model zal winnen voor ${playerOne} versus ${playerTwo}, kijk hier:
             <br/>
+            Om erachter te komen wie volgens ons model zal winnen voor ${playerOne} versus ${playerTwo}, kijk hier:
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>Matchstat.com ${playerOne} versus ${playerTwo} Wedtips.</b>
             </a> 
@@ -440,8 +440,8 @@ const matchstats = [
          <p>
             <b>Benim tahminim ${playerOneSurname}'ın kazanacağı yönünde.</b>
             Matchstat.com, tüm profesyonel ATP ve WTA geçmiş maçları üzerine eğitilmiş bir Yapay Zeka (Ai) tahmin modeline sahiptir. 
-            Modelimizin ${playerOne} karşısında ${playerTwo} karşısında kimin kazanacağını düşündüğünü öğrenmek için buraya bir göz atın:
             <br/>
+            Modelimizin ${playerOne} karşısında ${playerTwo} karşısında kimin kazanacağını düşündüğünü öğrenmek için buraya bir göz atın:
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>Matchstat.com ${playerOne} - ${playerTwo} tahmini.</b>
             </a> 
@@ -490,8 +490,8 @@ const matchstats = [
          <p>
             <b>我的选择是 ${playerOneSurname} 将获胜。</b> 
             Matchstat.com 拥有一个人工智能 (Ai) 预测模型，该模型经过所有职业 ATP 和 WTA 过去比赛的训练。 
-            要了解我们的模型认为谁会赢得 ${playerOne} 与 ${playerTwo} 的比赛，请查看此处：
             <br/>
+            要了解我们的模型认为谁会赢得 ${playerOne} 与 ${playerTwo} 的比赛，请查看此处：
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>Matchstat.com ${playerOne} vs ${playerTwo} 预测。</b>
             </a> 
@@ -540,8 +540,8 @@ const matchstats = [
          <p>
            <b> خياري هو أن ${playerOneSurname} هو الذي سيفوز. يحتوي موقع </b>
            Matchstat.com على نموذج للتنبؤ بالذكاء الاصطناعي (Ai) يتم تدريبه على جميع مباريات ATP وWTA الاحترافية السابقة. 
+           <br/>
             لمعرفة من يعتقد نموذجنا أنه سيفوز في ${playerOne} مقابل ${playerTwo}، ألقِ نظرة هنا:
-            <br/>
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>توقع Matchstat.com ${playerOne} مقابل ${playerTwo}.</b>
             </a> 
@@ -590,8 +590,8 @@ const matchstats = [
          <p>
             <b>私の選択は、${playerOneSurname} が勝つということです。</b>
             Matchstat.com には、ATP と WTA の過去のすべてのプロの試合でトレーニングされた人工知能 (Ai) 予測モデルがあります。 
-            私たちのモデルが ${playerOne} と ${playerTwo} でどちらが勝つと考えているかを確認するには、ここをご覧ください。
             <br/>
+            私たちのモデルが ${playerOne} と ${playerTwo} でどちらが勝つと考えているかを確認するには、ここをご覧ください:
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>Matchstat.com ${playerOne} 対 ${playerTwo} の予測。</b>
             </a> 
@@ -640,8 +640,8 @@ const matchstats = [
          <p>
             <b>Я считаю, что победит ${playerOneSurname}.</b>
             Matchstat.com имеет модель прогнозирования на основе искусственного интеллекта (Ai), которая обучена на всех прошлых матчах профессиональных турниров ATP и WTA. 
-            Чтобы узнать, кто, по мнению нашей модели, победит в матче ${playerOne} против ${playerTwo}, посмотрите здесь:
             <br/>
+            Чтобы узнать, кто, по мнению нашей модели, победит в матче ${playerOne} против ${playerTwo}, посмотрите здесь:
             <a href="https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/" target="_blank">
                <b>Прогноз Matchstat.com: ${playerOne} против ${playerTwo}.</b>
             </a> 
@@ -690,8 +690,8 @@ const matchstats = [
          <p>
             <b>मेरी पसंद यह है कि ${playerOneSurname} जीतेगा। </b>
             मैचस्टैट.कॉम के पास एक आर्टिफिशियल इंटेलिजेंस (एआई) भविष्यवाणी मॉडल है जो सभी पेशेवर एटीपी और डब्ल्यूटीए पिछले मैचों पर प्रशिक्षित है। 
-            यह जानने के लिए कि हमारा मॉडल ${playerOne} बनाम ${playerTwo} के लिए कौन जीतेगा, यहां देखें:
             <br/>
+            यह जानने के लिए कि हमारा मॉडल ${playerOne} बनाम ${playerTwo} के लिए कौन जीतेगा, यहां देखें:
             <a href='https://matchstat.com/tennis/h2h-odds-bets/${player1slug}/${player2slug}/' target='_blank'>
                <b>Matchstat.com ${playerOne} बनाम ${playerTwo} भविष्यवाणी।</b>
             </a> 
