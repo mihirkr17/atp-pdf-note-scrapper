@@ -28,7 +28,7 @@ translate.key = process.env.LIBRE_TRANSLATE_KEY;
 
 async function init(infos, mediaNoteUrls) {
    try {
-      const resources = infos?.nick === "sg" ? stevegtennis : matchstats;
+      const resources = infos?.nick === "sg" ? stevegtennis : matchstats.slice(0, 1);
 
       if (!resources || !Array.isArray(resources)) {
          throw new Error(`Resource not found.`);
