@@ -216,7 +216,6 @@ function extractMatchInfo(text) {
    // console.log(text?.replace(/@ATPMediaInfo[\s\S]*?Page \d+ of \d+/gi, "")?.split("\n"));
    const splittedTexts = text?.split("\n")?.filter(e => e?.trim().length !== 0); //?.filter(e => !regddd.test(e))?.filter(e => !reg2.test(e));
 
-   // console.log(splittedTexts);
    let mainResult = "", startRecording = false, headRecord = false;
 
 
@@ -253,7 +252,7 @@ function extractMatchInfo(text) {
       }
 
 
-      if ((/ vs .+ (leads|First meeting|Tied)/gi).test(line) && !line.includes("NOTE:")) {
+      if ((/ vs[. -]? .+ (leads|First Meeting|Tied|First Tour-Level Meeting)/gi).test(line) && !line.includes("NOTE:")) {
          startRecording = true;
          headRecord = true;
       } else {
@@ -262,7 +261,7 @@ function extractMatchInfo(text) {
 
       if (startRecording) {
          if (headRecord) {
-            mainResult += "breakHere";
+            mainResult += "breakHere ";
          }
          mainResult += (line + "\n");
       }
@@ -292,8 +291,38 @@ function extractMatchInfo(text) {
    const eventName = eventNameString;
    const eventHeadingTwo = `${eventDay} - ${eventDate}, ${eventAddress}.`
 
-   let contentArray = mainResult?.replace(/@ATPMediaInfo[\s\S]*?Page \d+ of \d+/gi, "")?.replace(/For the latest stats[\s\S]*?.com/gi, "");
-   contentArray = contentArray?.split("breakHere")?.filter(e => e) || [];
+
+   let rg = new RegExp(eventName.trim(), "gi");
+   let contentArray = mainResult; //?.replace(/For the latest stats[\s\S]*?.com/gi, "");
+   contentArray = contentArray?.split("breakHere")?.map(e => {
+      let str = e?.trim()?.split("\n");
+
+      let s = "";
+
+      for (const line of str) {
+         if ((/Page \d+ of \d+/gi).test(line)) {
+            continue;
+         }
+
+         if ((/(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[, -]? \d+ [A-Z][a-z]+ \d{4}/i).test(line)) {
+            continue;
+         }
+
+         if ((/@ATPMediaInfo/gi).test(line)) {
+            continue;
+         }
+
+         if (rg.test(line)) {
+            continue;
+         }
+
+         s += line + "\n";
+      }
+
+      return s
+
+   }) || [];
+
 
    const result = [];
 

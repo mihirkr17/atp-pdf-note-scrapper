@@ -14,6 +14,8 @@ const { constant } = require("./config");
 const { getPdfLinks } = require("./services");
 
 
+
+
 // const app = express();
 // const PORT = process.env.PORT || 8000;
 
@@ -29,6 +31,36 @@ const { getPdfLinks } = require("./services");
 // // Serve static files from the "models" directory
 // app.use(express.static(path.join(__dirname, 'models')));
 // app.use(require("./routes/route"));
+
+
+function dateChecker(dateRange) {
+   // const dateRange = "2024.06.10-2024.06.16";
+
+   // Split the date range into two separate date strings
+   const [startDateStr, endDateStr] = dateRange.split('-');
+
+   // Replace dots with hyphens to make the format parsable
+   const startDate = new Date(startDateStr.replace(/\./g, '-'));
+   const endDate = new Date(endDateStr.replace(/\./g, '-'));
+
+   // Check if the dates are valid
+   if (isNaN(startDate) || isNaN(endDate)) {
+      return false;
+   } else {
+      // Get today's date
+      const today = new Date();
+      // Zero out the time portion for accurate comparison
+      today.setHours(0, 0, 0, 0);
+      endDate.setHours(0, 0, 0, 0);
+
+      // Check if the end date is today
+      if (endDate <= today) {
+         return false;
+      } else {
+         return true;
+      }
+   }
+}
 
 
 (async () => {
@@ -65,15 +97,15 @@ const { getPdfLinks } = require("./services");
 
 
       const sites = [
-         // {
-         //    id: 1,
-         //    siteName: "stevegtennis",
-         //    nick: "sg",
-         //    domain: constant?.domainSg,
-         //    authToken: constant?.authTokenSg,
-         //    authorId: constant?.authorIdSg,
-         //    chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
-         // },
+         {
+            id: 1,
+            siteName: "stevegtennis",
+            nick: "sg",
+            domain: constant?.domainSg,
+            authToken: constant?.authTokenSg,
+            authorId: constant?.authorIdSg,
+            chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
+         },
          {
             id: 2,
             siteName: "matchstat",
@@ -96,19 +128,49 @@ const { getPdfLinks } = require("./services");
          return;
       }
 
-      // changed
-      mediaNoteUrls = mediaNoteUrls.slice(0, 1);
-      // let mediaNoteUrls = ["/-/media/2c1974484f09488e8d9b510b14b9b69d.pdf"]
+      for (const note of mediaNoteUrls) {
 
+         const isValidDate = dateChecker(note?.tournamentDate);
+         const location = note?.tournamentLocation;
+         const links = note?.pdfLinks;
 
-      consoleLogger(`Found ${lengthOfMediaNoteLinks} media note urls.`);
+         if (isValidDate && Array.isArray(links) && links.length >= 1) {
 
-      for (const site of sites) {
-         consoleLogger(`${site?.id}. Running ${site?.siteName}`);
-         const result = await init(site, mediaNoteUrls);
+            // Operation will run here
+            for (const site of sites) {
+               consoleLogger(`${site?.id}. Running ${site?.siteName}`);
+               const result = await init(site, links, location);
 
-         consoleLogger(`${result?.message} for ${site?.siteName}`);
+               consoleLogger(`${result?.message} for ${site?.siteName}`);
+            }
+         }
       }
+
+
+      // console.log(mediaNoteUrls);
+
+      // return;
+
+      // const lengthOfMediaNoteLinks = mediaNoteUrls.length || 0;
+
+      // if (lengthOfMediaNoteLinks <= 0) {
+      //    consoleLogger(`Sorry no media note urls available right now!`);
+      //    return;
+      // }
+
+      // // changed
+      // mediaNoteUrls = mediaNoteUrls.slice(0, 1);
+      // // let mediaNoteUrls = ["/-/media/2c1974484f09488e8d9b510b14b9b69d.pdf"]
+
+
+      // consoleLogger(`Found ${lengthOfMediaNoteLinks} media note urls.`);
+
+      // for (const site of sites) {
+      //    consoleLogger(`${site?.id}. Running ${site?.siteName}`);
+      //    const result = await init(site, mediaNoteUrls);
+
+      //    consoleLogger(`${result?.message} for ${site?.siteName}`);
+      // }
 
 
 

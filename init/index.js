@@ -26,8 +26,9 @@ const translate = (...args) =>
 translate.engine = 'libre';
 translate.key = process.env.LIBRE_TRANSLATE_KEY;
 
-async function init(infos, mediaNoteUrls) {
+async function init(infos, mediaNoteUrls, tournamentLocation) {
    try {
+
       const resources = infos?.nick === "sg" ? stevegtennis : matchstats;
 
       if (!resources || !Array.isArray(resources)) {
@@ -88,7 +89,7 @@ async function init(infos, mediaNoteUrls) {
                const eventName = content?.eventName;
                const eventDate = content?.eventDate;
                const eventDay = content?.eventDay;
-               const eventAddress = content?.eventAddress;
+               const eventAddress = content?.eventAddress || tournamentLocation;
                const eventRound = content?.round || null;
                const eventHeadingTwo = content?.eventHeadingTwo;
                const leads = content?.leads;
