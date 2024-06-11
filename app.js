@@ -132,7 +132,7 @@ function dateChecker(dateRange) {
       for (const site of sites) {
          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
 
-         for (const note of mediaNoteUrls.slice(0, 1)) {
+         for (const note of mediaNoteUrls) {
             const isValidDate = dateChecker(note?.tournamentDate);
             const location = note?.tournamentLocation;
             const links = note?.pdfLinks;

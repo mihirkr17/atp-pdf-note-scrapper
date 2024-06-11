@@ -29,7 +29,7 @@ translate.key = process.env.LIBRE_TRANSLATE_KEY;
 async function init(infos, mediaNoteUrls, tournamentLocation) {
    try {
 
-      const resources = infos?.nick === "sg" ? stevegtennis : matchstats.slice(0, 1);
+      const resources = infos?.nick === "sg" ? stevegtennis : matchstats;
 
       if (!resources || !Array.isArray(resources)) {
          throw new Error(`Resource not found.`);
@@ -80,7 +80,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
             consoleLogger(`Pdf downloaded and extracted contents successfully.`);
 
-            for (const content of contents.slice(0, 1)) {
+            for (const content of contents) {
                const playerOne = content?.player1;
                const playerTwo = content?.player2;
                const player1slug = content?.player1slug;
