@@ -312,7 +312,7 @@ const matchstats = [
       categoryId: 4378,
       title: "Wer Gewinnt #playerOneSurname vs. #playerTwoSurname? Wett-Tipps & Prognosen Für ATP #eventName #eventYear",
       playerTag: "#playerName Wett-Tipps & Prognosen",
-      eventTag: "ATP #eventName- Wett-Tipps & Prognosen",
+      eventTag: "ATP #eventName Wett-Tipps & Prognosen",
       contents: function (eventName,
          leads,
          eventAddress,
@@ -489,7 +489,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} en ${playerTwoSurname} staan ​​op het ${eventDay} schema om ${plainEventName} ${eventYear} op ${eventDate}. Laten we de carrière, statistieken uit het verleden en de recente vorm van deze spelers uitsplitsen en voorspellen wie de overwinning zal behalen.
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements} <br/>
+         <br/>${advertisements}<br/>
          <h3>Wie zal winnen in deze onderlinge strijd?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -561,7 +561,7 @@ const matchstats = [
       languageCode: "zh",
       category: "WTA / ATP 网球预测",
       categoryId: 4383,
-      title: "谁会赢得#playerOneSurname vs #playerTwoSurname？ ATP 预测 #eventName #eventYear",
+      title: "谁会赢得 #playerOneSurname vs #playerTwoSurname？ ATP 预测 #eventName #eventYear",
       playerTag: "#playerName 预测",
       eventTag: "ATP #eventName 预测",
       contents: function (eventName,

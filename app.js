@@ -97,15 +97,15 @@ function dateChecker(dateRange) {
 
 
       const sites = [
-         {
-            id: 1,
-            siteName: "stevegtennis",
-            nick: "sg",
-            domain: constant?.domainSg,
-            authToken: constant?.authTokenSg,
-            authorId: constant?.authorIdSg,
-            chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
-         },
+         // {
+         //    id: 1,
+         //    siteName: "stevegtennis",
+         //    nick: "sg",
+         //    domain: constant?.domainSg,
+         //    authToken: constant?.authTokenSg,
+         //    authorId: constant?.authorIdSg,
+         //    chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
+         // },
          {
             id: 2,
             siteName: "matchstat",
@@ -128,23 +128,42 @@ function dateChecker(dateRange) {
          return;
       }
 
-      for (const note of mediaNoteUrls) {
+      // Operation will run here
+      for (const site of sites) {
+         consoleLogger(`${site?.id}. Running ${site?.siteName}`);
 
-         const isValidDate = dateChecker(note?.tournamentDate);
-         const location = note?.tournamentLocation;
-         const links = note?.pdfLinks;
+         for (const note of mediaNoteUrls) {
+            const isValidDate = dateChecker(note?.tournamentDate);
+            const location = note?.tournamentLocation;
+            const links = note?.pdfLinks;
 
-         if (isValidDate && Array.isArray(links) && links.length >= 1) {
-
-            // Operation will run here
-            for (const site of sites) {
-               consoleLogger(`${site?.id}. Running ${site?.siteName}`);
+            if (isValidDate && Array.isArray(links) && links.length >= 1) {
                const result = await init(site, links, location);
-
                consoleLogger(`${result?.message} for ${site?.siteName}`);
             }
          }
+
       }
+
+
+
+      // for (const note of mediaNoteUrls) {
+
+      //    const isValidDate = dateChecker(note?.tournamentDate);
+      //    const location = note?.tournamentLocation;
+      //    const links = note?.pdfLinks;
+
+      //    if (isValidDate && Array.isArray(links) && links.length >= 1) {
+
+      //       // Operation will run here
+      //       for (const site of sites) {
+      //          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
+      //          const result = await init(site, links, location);
+
+      //          consoleLogger(`${result?.message} for ${site?.siteName}`);
+      //       }
+      //    }
+      // }
 
 
       // console.log(mediaNoteUrls);
