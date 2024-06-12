@@ -97,24 +97,24 @@ function dateChecker(dateRange) {
 
 
       const sites = [
-         {
-            id: 1,
-            siteName: "stevegtennis",
-            nick: "sg",
-            domain: constant?.domainSg,
-            authToken: constant?.authTokenSg,
-            authorId: constant?.authorIdSg,
-            chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
-         },
          // {
-         //    id: 2,
-         //    siteName: "matchstat",
-         //    nick: "ms",
-         //    domain: constant?.domainMs,
-         //    authToken: constant?.authTokenMs,
-         //    authorId: constant?.authorIdMs,
-         //    chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
-         // }
+         //    id: 1,
+         //    siteName: "stevegtennis",
+         //    nick: "sg",
+         //    domain: constant?.domainSg,
+         //    authToken: constant?.authTokenSg,
+         //    authorId: constant?.authorIdSg,
+         //    chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
+         // },
+         {
+            id: 2,
+            siteName: "matchstat",
+            nick: "ms",
+            domain: constant?.domainMs,
+            authToken: constant?.authTokenMs,
+            authorId: constant?.authorIdMs,
+            chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
+         }
       ];
 
 
@@ -132,13 +132,13 @@ function dateChecker(dateRange) {
       for (const site of sites) {
          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
 
-         for (const note of mediaNoteUrls) {
+         for (const note of mediaNoteUrls.slice(0, 1)) {
             const isValidDate = dateChecker(note?.tournamentDate);
             const location = note?.tournamentLocation;
             const links = note?.pdfLinks;
 
             if (isValidDate && Array.isArray(links) && links.length >= 1) {
-               const result = await init(site, links, location);
+               const result = await init(site, links.slice(0, 1), location);
                consoleLogger(`${result?.message} for ${site?.siteName}`);
             }
          }

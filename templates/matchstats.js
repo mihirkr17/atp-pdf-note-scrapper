@@ -1,107 +1,94 @@
-const advertisements = `<section class="has-el-gap el-gap-default elementor-section elementor-top-section elementor-element elementor-element-2af1554 elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2af1554" data-element_type="section">
-<div class="elementor-container elementor-column-gap-no">
-<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9a239ba" data-id="9a239ba" data-element_type="column">
-<div class="elementor-widget-wrap elementor-element-populated">
-<section class="has-el-gap el-gap-default elementor-section elementor-inner-section elementor-element elementor-element-8cfa2cf elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8cfa2cf" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-<div class="elementor-container elementor-column-gap-no">
-<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-42a1ad7" data-id="42a1ad7" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-<div class="elementor-widget-wrap elementor-element-populated">
-<div class="elementor-element elementor-element-0cc86ea elementor-widget elementor-widget-price-table" data-id="0cc86ea" data-element_type="widget" data-widget_type="price-table.default">
-<div class="elementor-widget-container">
-<style>/*! elementor-pro - v3.18.0 - 06-12-2023 */
-.elementor-widget-price-list .elementor-price-list{list-style:none;padding:0;margin:0}.elementor-widget-price-list .elementor-price-list li{margin:0}.elementor-price-list li:not(:last-child){margin-bottom:20px}.elementor-price-list .elementor-price-list-image{max-width:50%;flex-shrink:0;padding-right:25px}.elementor-price-list .elementor-price-list-image img{width:100%}.elementor-price-list .elementor-price-list-header,.elementor-price-list .elementor-price-list-item,.elementor-price-list .elementor-price-list-text{display:flex}.elementor-price-list .elementor-price-list-item{align-items:flex-start}.elementor-price-list .elementor-price-list-item .elementor-price-list-text{align-items:flex-start;flex-wrap:wrap;flex-grow:1}.elementor-price-list .elementor-price-list-item .elementor-price-list-header{align-items:center;flex-basis:100%;font-size:19px;font-weight:600;margin-bottom:10px;justify-content:space-between}.elementor-price-list .elementor-price-list-item .elementor-price-list-title{max-width:80%}.elementor-price-list .elementor-price-list-item .elementor-price-list-price{font-weight:600}.elementor-price-list .elementor-price-list-item p.elementor-price-list-description{flex-basis:100%;font-size:14px;margin:0}.elementor-price-list .elementor-price-list-item .elementor-price-list-separator{flex-grow:1;margin-left:10px;margin-right:10px;border-bottom-style:dotted;border-bottom-width:2px;height:0}.elementor-price-table{text-align:center}.elementor-price-table .elementor-price-table__header{background:var(--e-price-table-header-background-color,#555);padding:20px 0}.elementor-price-table .elementor-price-table__heading{margin:0;padding:0;line-height:1.2;font-size:24px;font-weight:600;color:#fff}.elementor-price-table .elementor-price-table__subheading{font-size:13px;font-weight:400;color:#fff}.elementor-price-table .elementor-price-table__original-price{margin-right:15px;text-decoration:line-through;font-size:.5em;line-height:1;font-weight:400;align-self:center}.elementor-price-table .elementor-price-table__original-price .elementor-price-table__currency{font-size:1em;margin:0}.elementor-price-table .elementor-price-table__price{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;flex-direction:row;color:#555;font-weight:800;font-size:65px;padding:40px 0}.elementor-price-table .elementor-price-table__price .elementor-typo-excluded{line-height:normal;letter-spacing:normal;text-transform:none;font-weight:400;font-size:medium;font-style:normal}.elementor-price-table .elementor-price-table__after-price{display:flex;flex-wrap:wrap;text-align:start;align-self:stretch;align-items:flex-start;flex-direction:column}.elementor-price-table .elementor-price-table__integer-part{line-height:.8}.elementor-price-table .elementor-price-table__currency,.elementor-price-table .elementor-price-table__fractional-part{line-height:1;font-size:.3em}.elementor-price-table .elementor-price-table__currency{margin-right:3px}.elementor-price-table .elementor-price-table__period{width:100%;font-size:13px;font-weight:400}.elementor-price-table .elementor-price-table__features-list{list-style-type:none;margin:0;padding:0;line-height:1;color:var(--e-price-table-features-list-color)}.elementor-price-table .elementor-price-table__features-list li{font-size:14px;line-height:1;margin:0;padding:0}.elementor-price-table .elementor-price-table__features-list li .elementor-price-table__feature-inner{margin-left:15px;margin-right:15px}.elementor-price-table .elementor-price-table__features-list li:not(:first-child):before{content:"";display:block;border:0 solid hsla(0,0%,47.8%,.3);margin:10px 12.5%}.elementor-price-table .elementor-price-table__features-list i{margin-right:10px;font-size:1.3em}.elementor-price-table .elementor-price-table__features-list svg{margin-right:10px;fill:var(--e-price-table-features-list-color);height:1.3em;width:1.3em}.elementor-price-table .elementor-price-table__features-list svg~*{vertical-align:text-top}.elementor-price-table .elementor-price-table__footer{padding:30px 0}.elementor-price-table .elementor-price-table__additional_info{margin:0;font-size:13px;line-height:1.4}.elementor-price-table__ribbon{position:absolute;top:0;left:auto;right:0;transform:rotate(90deg);width:150px;overflow:hidden;height:150px}.elementor-price-table__ribbon-inner{text-align:center;left:0;width:200%;transform:translateY(-50%) translateX(-50%) translateX(35px) rotate(-45deg);margin-top:35px;font-size:13px;line-height:2;font-weight:800;text-transform:uppercase;background:#000}.elementor-price-table__ribbon.elementor-ribbon-left{transform:rotate(0);left:0;right:auto}.elementor-price-table__ribbon.elementor-ribbon-right{transform:rotate(90deg);left:auto;right:0}.elementor-widget-price-table .elementor-widget-container{overflow:hidden;background-color:#f9fafa}.e-con-inner>.elementor-widget-price-list,.e-con>.elementor-widget-price-list{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style>
-<div class="elementor-price-table">
-<div class="elementor-price-table__header">
-<h3 class="elementor-price-table__heading">
-Tennis Predictions </h3>
-</div>
-<div class="elementor-price-table__price">
-<div class="elementor-price-table__original-price elementor-typo-excluded">
-<span class="elementor-price-table__currency">$</span>49.99 </div>
-<span class="elementor-price-table__currency">$</span> <span class="elementor-price-table__integer-part">
-19 </span>
-<div class="elementor-price-table__after-price">
-<span class="elementor-price-table__fractional-part">
-99 </span>
-<span class="elementor-price-table__period elementor-typo-excluded">Per Month</span> </div>
-</div>
-<ul class="elementor-price-table__features-list">
-<li class="elementor-repeater-item-02d979e">
-<div class="elementor-price-table__feature-inner">
-&nbsp; </div>
-</li>
-</ul>
-</div>
-<div class="elementor-price-table__ribbon elementor-ribbon-left">
-<div class="elementor-price-table__ribbon-inner">
-Popular </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-7b37072" data-id="7b37072" data-element_type="column">
-<div class="elementor-widget-wrap elementor-element-populated">
-<div class="elementor-element elementor-element-c00f91f elementor-widget__width-auto elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="c00f91f" data-element_type="widget" data-widget_type="icon-list.default">
-<div class="elementor-widget-container">
-<link rel="stylesheet" href="https://matchstat.com/predictions-tips/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css"> <ul class="elementor-icon-list-items">
-<li class="elementor-icon-list-item">
-<span class="elementor-icon-list-icon">
-<i aria-hidden="true" class="far fa-check-circle"></i> </span>
-<span class="elementor-icon-list-text">Unlimited Daily Tennis Predictions</span>
-</li>
-<li class="elementor-icon-list-item">
-<span class="elementor-icon-list-icon">
-<i aria-hidden="true" class="far fa-check-circle"></i> </span>
-<span class="elementor-icon-list-text"> Unlock the Best Value Bets</span>
-</li>
-<li class="elementor-icon-list-item">
-<span class="elementor-icon-list-icon">
-<i aria-hidden="true" class="far fa-check-circle"></i> </span>
-<span class="elementor-icon-list-text">Personalized tips to your mailbox</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="elementor-element elementor-element-3a72f5b elementor-widget__width-auto elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="3a72f5b" data-element_type="widget" data-widget_type="icon-list.default">
-<div class="elementor-widget-container">
-<ul class="elementor-icon-list-items">
-<li class="elementor-icon-list-item">
-<span class="elementor-icon-list-icon">
-<i aria-hidden="true" class="far fa-check-circle"></i> </span>
-<span class="elementor-icon-list-text">Live chat with our prediction experts</span>
-</li>
-<li class="elementor-icon-list-item">
-<span class="elementor-icon-list-icon">
-<i aria-hidden="true" class="far fa-check-circle"></i> </span>
-<span class="elementor-icon-list-text">Filter Predictions (Level &amp; Surface)</span>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-2ea824f" data-id="2ea824f" data-element_type="column">
-<div class="elementor-widget-wrap elementor-element-populated">
-<div class="elementor-element elementor-element-b42387c elementor-widget-tablet__width-auto elementor-widget elementor-widget-button" data-id="b42387c" data-element_type="widget" data-widget_type="button.default">
-<div class="elementor-widget-container">
-<div class="elementor-button-wrapper">
-<a class="elementor-button elementor-button-link elementor-size-sm" href="https://matchstat.com/predictions-tips/register/tennis-match-winner-pro-monthly/">
-<span class="elementor-button-content-wrapper">
-<span class="elementor-button-text">SIGN ME UP</span>
-</span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-</div>
-</section>`
+const advertisements = `<div style="padding: 10px 0;">
+   <style>
+.advertisement_container{padding:10px;width:100%;font-family:"Geomanist Medium",Sans-serif}.advertisement_wrapper{box-shadow:0 0 8px 0 #10bd7f;background-color:#fff;border-top-right-radius:10px;border-bottom-right-radius:10px}.add_price_table__ribbon_inner,.advertisement_btn{background-color:#10bd7f;color:#fff;text-align:center}.advertisement_row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative}.advertisement_column{flex:1;width:100%}.add_price_table__ribbon{position:absolute;top:0;width:150px;overflow:hidden;height:100px;transform:rotate(0);left:0;right:auto}.add_price_table__ribbon_inner{margin-top:30px;transform:translateY(-50%) translateX(-50%) translateX(30px) rotate(-45deg);font-family:Rajdhani,Sans-serif;font-size:14px;font-weight:600;width:100%;height:25px;line-height:25px}.advertisement_price_table{display:flex;flex-direction:column}.advertisement_table_price_header{text-align:center;padding:20px;flex:1}.advertisement_table_price_header h3{font-size:1rem}.advertisement_table__price{flex:1;display:flex;flex-direction:row;justify-content:center;align-items:baseline}.advertisement_price_table__integer_part{font-size:3rem;font-weight:700}.advertisement_price_table__currency{font-weight:500}.advertisement_price_table__after_price{display:flex;align-items:start;flex-direction:column;padding-left:4px;line-height:.9}.icon_list_item,.icon_list_item_icon{align-items:center;display:flex}.widget_container{display:flex}ul.icon_list_items{column-count:2}.icon_list_item{list-style:none;justify-content:start;gap:7px;margin:0 0 5px}span.icon_list_item_text{color:#606060}.advertisement_button_wrapper{display:flex;align-items:center;justify-content:center;padding:20px}.advertisement_btn{text-decoration:none;font-weight:400;display:inline-block;line-height:1;font-size:15px;padding:12px 24px;border-radius:3px;fill:#fff;transition:.3s}.col2{flex:2!important}.responsive{display:none}.advertisement_table_price_section{background-color:#61cE7026;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}@media (max-width:767px){.responsive{display:flex}.advertisement_row{flex-direction:column}.advertisement_table_price_section{background-color:rgb(163 225 164)}ul.icon_list_items{column-count:1}.icon_list_item{margin:0 0 10px}.advertisement_table_price_header h3{font-size:1rem}}
+   </style>
+
+   <div class="advertisement_container">
+      <div class="advertisement_wrapper">
+         <div class="advertisement_row">
+            <div class="advertisement_column">
+               <div class="widget_wrap">
+                  <div class="advertisement_price_table">
+                     <div class="advertisement_table_price_header">
+                        <h3>Tennis Predictions</h3>
+                     </div>
+                     <div class="advertisement_table_price_section">
+                        <div class="advertisement_table__price">
+                           <span style="margin-right: 15px; text-decoration-line: line-through; color: gray">
+                              $49.99
+                           </span>
+                           <span class="advertisement_price_table__integer_part">
+                              <small style="font-size: 1rem;">$</small>19<small style="font-size: 1rem;">.99</small>
+                           </span>
+                           <span style="color: black;">&nbsp;Per Month</span>
+                        </div>
+                        <h4 class="responsive">No contract, cancel anytime</h4>
+                     </div>
+                  </div>
+                  <div class="add_price_table__ribbon">
+                     <div class="add_price_table__ribbon_inner">
+                        Popular </div>
+                  </div>
+               </div>
+            </div>
+            <div class="advertisement_column col2">
+               <div class="widget_wrap">
+                  <div style="position: relative; padding: 20px 30px;">
+                     <div class="widget_container">
+                        <link rel="stylesheet"
+                           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+                           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+                           crossorigin="anonymous" referrerpolicy="no-referrer" />
+                        <ul class="icon_list_items">
+                           <li class="icon_list_item">
+                              <span class="icon_list_item_icon">
+                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
+                              <span class="icon_list_item_text">Unlimited Daily Tennis Predictions</span>
+                           </li>
+                           <li class="icon_list_item">
+                              <span class="icon_list_item_icon">
+                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
+                              <span class="icon_list_item_text"> Unlock the Best Value Bets</span>
+                           </li>
+                           <li class="icon_list_item">
+                              <span class="icon_list_item_icon">
+                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
+                              <span class="icon_list_item_text">Personalized tips to your mailbox</span>
+                           </li>
+                           <li class="icon_list_item">
+                              <span class="icon_list_item_icon">
+                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
+                              <span class="icon_list_item_text">Live chat with our prediction experts</span>
+                           </li>
+                           <li class="icon_list_item">
+                              <span class="icon_list_item_icon">
+                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
+                              <span class="icon_list_item_text">Filter Predictions (Level &amp;
+                                 Surface)</span>
+                           </li>
+                           <li class="icon_list_item responsive">
+                              <span class="icon_list_item_icon">
+                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
+                              <span class="icon_list_item_text">CANCEL ANYTIME</span>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="advertisement_column">
+               <div class="advertisement_button_wrapper">
+                  <a class="advertisement_btn"
+                     href="https://matchstat.com/predictions-tips/register/tennis-match-winner-pro-monthly/">
+                     <span>SIGN ME UP</span>
+                  </a>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>`
 
 const matchstats = [
    {
