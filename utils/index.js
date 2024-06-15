@@ -344,7 +344,9 @@ function extractMatchInfo(text) {
 
       const content = section?.replace(regex, regexWith)?.trim() || "";
 
-      if (content && (/\b(Career highlights|NOTE)\b/gi).test(content)) {
+      const purifiedContent = content && content.match(/\b(Career highlights|NOTE)\b/gi);
+
+      if (purifiedContent && purifiedContent.length === 2) {
          result.push({
             content: content,
             player1: player?.player1,
