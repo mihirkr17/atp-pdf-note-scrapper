@@ -71,11 +71,6 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
             // Extracting match details from pdf contents | basically it returns [Array];
             const contents = extractMatchInfo(pdfTextContents);
 
-
-            console.log(contents);
-
-            return
-
             if (!Array.isArray(contents) || contents.length === 0) {
                continue;
             }
