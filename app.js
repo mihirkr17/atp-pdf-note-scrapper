@@ -52,13 +52,7 @@ function dateChecker(dateRange) {
       // Zero out the time portion for accurate comparison
       today.setHours(0, 0, 0, 0);
       endDate.setHours(0, 0, 0, 0);
-
-      // Check if the end date is today
-      if (endDate <= today) {
-         return false;
-      } else {
-         return true;
-      }
+      return today <= endDate;
    }
 }
 
@@ -130,14 +124,19 @@ function dateChecker(dateRange) {
          return;
       }
 
+
+
       // Operation will run here
       for (const site of sites) {
          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
-
+         
          for (const note of mediaNoteUrls) {
+    
             const isValidDate = dateChecker(note?.tournamentDate);
             const location = note?.tournamentLocation;
             const links = note?.pdfLinks;
+
+            
 
             if (isValidDate && Array.isArray(links) && links.length >= 1) {
                const result = await init(site, links.slice(0, 1), location);
