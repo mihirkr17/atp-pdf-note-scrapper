@@ -126,7 +126,8 @@ const matchstats = [
             ${playerOneSurname} and ${playerTwoSurname} are on the ${eventDay} Schedule at ${plainEventName} ${eventYear} on ${eventDate}. Lets breakdown the career, past stats and recent form of these players and predict who will get the victory.
             </p>`.replace(/\n/g, " ")}    
          <br/>
-         [elementor-template id="1844"]
+
+         <?php echo do_shortcode("[elementor-template id="1844"]");?>
          <br/>
          <h3>Who Will Win In This Head-To-Head?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
