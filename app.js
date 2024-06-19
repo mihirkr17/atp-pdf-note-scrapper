@@ -7,8 +7,6 @@ require("dotenv").config();
 
 const {
    consoleLogger,
-   createFileAsynchronously,
-   readFileAsynchronously,
 } = require("./utils");
 
 // const path = require("path");
@@ -94,7 +92,7 @@ function dateChecker(dateRange) {
       // Getting pdf first link
       let mediaNoteUrls = await getPdfLinks(constant?.atpNoteUri);
 
-      mediaNoteUrls = mediaNoteUrls && mediaNoteUrls.filter(mediaNoteUrl => mediaNoteUrl?.pdfLinks.length > 0).slice(-1);
+      mediaNoteUrls = mediaNoteUrls && mediaNoteUrls.filter(mediaNoteUrl => mediaNoteUrl?.pdfLinks.length > 0);
 
       const lengthOfMediaNoteLinks = mediaNoteUrls.length || 0;
 
