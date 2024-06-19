@@ -50,6 +50,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
       let indexOfPdf = 1;
       let postCounter = 0;
+      const minContentCharacters = 800;
 
       for (const mediaNoteUrl of mediaNoteUrls) {
 
@@ -70,7 +71,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
             // Extracting match details from pdf contents | basically it returns [Array];
             const contents = extractMatchInfo(pdfTextContents);
-
+            
             if (!Array.isArray(contents) || contents.length === 0) {
                continue;
             }
@@ -94,12 +95,16 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                const leads = content?.leads;
                const playerOneSurname = getSurnameOfPlayer(playerOne);
                const playerTwoSurname = getSurnameOfPlayer(playerTwo);
-               const yearMatch = eventDate?.match(/\d{4}/);
-               const eventYear = yearMatch ? yearMatch[0] : new Date().getFullYear();
+               const eventYear = content?.eventYear;
                const plainEventName = eventName?.replace(/\d/g, '')?.trim();
 
                if (!playerOne || !playerTwo || !eventName) {
                   consoleLogger(`Some fields are missing.`);
+                  continue;
+               }
+
+               if (content.length < minContentCharacters) {
+                  consoleLogger(`S-${postCounter}. Post skipped due to content less than ${minContentCharacters} characters.`);
                   continue;
                }
 
@@ -128,8 +133,13 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         }
 
                         const categoryId = resource?.categoryId;
-                        const playerOneTag = resource?.playerTag?.replace("#playerName", infos?.nick === "sg" ? playerOne : playerOneSurname);
-                        const playerTwoTag = resource?.playerTag?.replace("#playerName", infos?.nick === "sg" ? playerTwo : playerTwoSurname);
+
+                        // Creating tags
+                        const playerOneTag = resource?.playerTag?.replace("#playerName", playerOne);
+                        const playerTwoTag = resource?.playerTag?.replace("#playerName", playerTwo);
+                        const playerVsPlayerTag = resource?.playerVsPlayerTag ?
+                           resource?.playerVsPlayerTag?.replace("#playerOneSurname", playerOneSurname)?.replace("#playerTwoSurname", playerTwoSurname) : null;
+
                         const eventTag = resource?.eventTag?.replace("#eventName", infos?.nick === "sg" ? eventName : plainEventName);
 
                         const [eventHeadingTwoTranslate, eventAddressTranslate, eventDayTranslate, eventDateTranslate] = await Promise.all([
@@ -155,6 +165,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                               ?.replace("#eventYear", eventYear);
                         }
 
+                        // Capitalized first character of each words
                         let title = capitalizeFirstLetterOfEachWord(newTitle);
                         title = title?.replace("Atp", "ATP");
                         consoleLogger(`S-${postCounter}. Post Title: ${title}.`);
@@ -162,6 +173,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         consoleLogger(`S-${postCounter}. Post Slug: ${slug}.`);
 
 
+                        // Checking exist post in the db
                         const isUniquePost = await checkExistingPostOfWP(constant?.postExistUri(infos?.domain, slug), token);
 
                         if (isUniquePost) {
@@ -173,7 +185,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         consoleLogger(`S-${postCounter}. Event Day: ${eventDay}.`);
                         consoleLogger(`S-${postCounter}. Tags generating for ${playerOneTag}, ${playerTwoTag}, ${eventTag}`);
 
-                        const tagIds = await getPostTagIdsOfWP(constant?.tagUri(infos?.domain), [playerOneTag, playerTwoTag, eventTag], token);
+                        const tagIds = await getPostTagIdsOfWP(constant?.tagUri(infos?.domain), [playerOneTag, playerTwoTag, eventTag, playerVsPlayerTag], token);
 
                         if (!Array.isArray(tagIds) || tagIds.length !== 3) {
                            throw new Error(`S-${postCounter}. Tag generation failed. Terminate the request.`);

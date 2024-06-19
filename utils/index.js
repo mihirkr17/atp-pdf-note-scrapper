@@ -218,12 +218,13 @@ function extractMatchInfo(text) {
 
    let mainResult = "", startRecording = false, headRecord = false;
 
+   const addrRegex1 = /\b\d{1,2}-\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}\b/i;
 
    // console.log(splittedTexts);
 
    // console.log(splittedTexts);
-   let dateString;
-   let placeString;
+   let dateString = "";
+   let placeString = "";
    let eventNameString = "";
    let eventDayString = "";
 
@@ -247,8 +248,10 @@ function extractMatchInfo(text) {
          eventDayString = day?.[0];
       }
 
-      if ((/(France|Switzerland|Argentina|Australia|Austria|Belgium|Brazil|Canada|China|Croatia|Germany|India|Italy|Japan|Mexico|Morocco|Netherlands|New Zealand|Portugal|Qatar|Russia|Spain|Sweden|UAE|United Kingdom|United States) \|/i).test(line)) {
+      if (addrRegex1.test(line)) {
          placeString = line;
+      } else if (line?.match(/\d{4} ROLAND GARROS/i) === true) {
+         placeString = "Paris, France";
       }
 
 
@@ -265,31 +268,18 @@ function extractMatchInfo(text) {
          }
          mainResult += (line + "\n");
       }
-
-      // if (line.includes("ATP MEDIA NOTES")) {
-      //    const dateLine = splittedTexts[i + 1];
-      //    const evDate = dateLine && dateLine.trim().split(dateLineRegex);
-      //    const addressLine = splittedTexts[i + 2];
-
-      //    const dayMatch = evDate[0] && evDate[0].match(dayRegex);
-
-      //    eventHeader.eventDay = dayMatch ? dayMatch?.toString() : "";
-      //    eventHeader.eventNameFull = line ? line : "";
-      //    eventHeader.eventShortDate = evDate[1] ? evDate[1].trim() : "";
-      //    eventHeader.eventName = line ? line.replace(atpMediaNoteReplaceRegex, "")?.trim() : "";
-      //    eventHeader.eventFullDate = dateLine ? dateLine.trim() : "";
-      //    eventHeader.eventAddress = addressLine ? addressLine?.split(" | ").slice(0, -1).join(", ").trim() : "";
-      // }
    }
+
+
 
 
    // new variables
    const eventDay = eventDayString;
    const eventDate = dateString;
-   placeString = placeString?.split(" | ");
-   const eventAddress = placeString?.slice(0, placeString.length - 1)?.join(", ");
+   const lastIndexOfVLine = placeString.lastIndexOf("|");
+   const eventAddress = placeString?.slice(0, lastIndexOfVLine)?.replace(" | ", ", ")?.trim() || "";
    const eventName = eventNameString;
-   const eventHeadingTwo = `${eventDay} - ${eventDate}, ${eventAddress}.`
+   const eventHeadingTwo = `${eventDay} - ${eventDate}, ${eventAddress}.`;
 
 
    let rg = new RegExp(eventName.trim(), "gi");
@@ -356,6 +346,7 @@ function extractMatchInfo(text) {
             leads: matchLeads,
             round: player?.round,
             eventDate: eventDate?.trim(),
+            eventYear: eventDate ? eventDate.match(/\d{4}/)?.[0] : new Date().getFullYear(),
             eventDay,
             eventName: eventName?.trim(),
             eventHeadingTwo: eventHeadingTwo?.trim(),

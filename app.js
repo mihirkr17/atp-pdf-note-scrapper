@@ -4,8 +4,11 @@
 require("dotenv").config();
 
 
+
 const {
    consoleLogger,
+   createFileAsynchronously,
+   readFileAsynchronously,
 } = require("./utils");
 
 // const path = require("path");
@@ -19,7 +22,7 @@ const { getPdfLinks } = require("./services");
 // const app = express();
 // const PORT = process.env.PORT || 8000;
 
-// Middlewares
+// // Middlewares
 // app.use(cookieParser());
 // app.use(express.json());
 // app.set({
@@ -28,7 +31,7 @@ const { getPdfLinks } = require("./services");
 //    allowedHeaders: ["Content-Type", "Authorization", "role"],
 //    credentials: true,
 // });
-// // Serve static files from the "models" directory
+// Serve static files from the "models" directory
 // app.use(express.static(path.join(__dirname, 'models')));
 // app.use(require("./routes/route"));
 
@@ -56,12 +59,8 @@ function dateChecker(dateRange) {
    }
 }
 
-
 (async () => {
    try {
-
-      // consoleLogger(Buffer.from("wojtek.kolan@icloud.com:flzP pt8R RuiD Ot4U 2Q7O b0SA").toString("base64"));
-      // return
       if (!constant?.postStatus || !constant?.postStatusAll.includes(constant?.postStatus)) {
          throw new Error(`ERROR: Post status must be set as "POST_STATUS=publish or future or draft or pending or private" in .env`);
       }
@@ -69,26 +68,6 @@ function dateChecker(dateRange) {
       if (!constant?.authorIdSg || !(/[0-9]/g).test(constant?.authorIdSg) || !constant?.authorIdMs || !(/[0-9]/g).test(constant?.authorIdMs)) {
          throw new Error(`ERROR: Author id must be set as "AUTHOR_ID_SG=12345 | AUTHOR_ID_MS=12345" in .env`);
       }
-
-      // if (!["ON", "OFF"].includes(constant?.scheduleAction)) {
-      //    throw new Error(`ERROR: Schedule action must be set as "SCHEDULE_ACTION=ON or OFF" in .env`);
-      // }
-
-      // const isScheduleTimeValueDigit = (/[2-9]/g).test(constant?.scheduleTime);
-
-      // if (!isScheduleTimeValueDigit) {
-      //    throw new Error(`ERROR: Schedule time must be set as "SCHEDULE_TIME=2 to 9" in .env.`);
-      // }
-      // const scheduleTime = parseInt(constant?.scheduleTime);
-
-      // const scheduleTimeLabel = constant?.scheduleTimeLabel;
-
-      // if (!["minutes", "hours"].includes(scheduleTimeLabel)) {
-      //    throw new Error(`ERROR: Schedule format must be set as "SCHEDULE_TIME_LABEL=minutes or hours" in .env.`);
-      // }
-
-      // const scheduleJobTime = scheduleTimeLabel === "minutes" ? `*/${scheduleTime} * * * *` : `0 */${scheduleTime} * * *`;
-
 
       const sites = [
          {
@@ -115,7 +94,7 @@ function dateChecker(dateRange) {
       // Getting pdf first link
       let mediaNoteUrls = await getPdfLinks(constant?.atpNoteUri);
 
-      mediaNoteUrls = mediaNoteUrls && mediaNoteUrls.filter(mediaNoteUrl => mediaNoteUrl?.pdfLinks.length > 0);
+      mediaNoteUrls = mediaNoteUrls && mediaNoteUrls.filter(mediaNoteUrl => mediaNoteUrl?.pdfLinks.length > 0).slice(-1);
 
       const lengthOfMediaNoteLinks = mediaNoteUrls.length || 0;
 
@@ -129,14 +108,14 @@ function dateChecker(dateRange) {
       // Operation will run here
       for (const site of sites) {
          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
-         
+
          for (const note of mediaNoteUrls) {
-    
+
             const isValidDate = dateChecker(note?.tournamentDate);
             const location = note?.tournamentLocation;
             const links = note?.pdfLinks;
 
-            
+
 
             if (isValidDate && Array.isArray(links) && links.length >= 1) {
                const result = await init(site, links.slice(0, 1), location);

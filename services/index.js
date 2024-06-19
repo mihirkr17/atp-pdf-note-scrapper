@@ -39,7 +39,9 @@ async function getPostTagIdsOfWP(url, tags, token) {
    return retryOperation(async () => {
       const tagIds = [];
 
-      for (const tag of tags) {
+      const finalTags = tags.filter(e => e);
+
+      for (const tag of finalTags) {
          try {
             const response = await xhrPostRequest(url, token, { name: tag });
 
