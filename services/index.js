@@ -51,14 +51,11 @@ async function getPostTagIdsOfWP(url, tags, token) {
             } else {
                tagIds.push(result?.id);
             }
-
-            console.log(result?.id);
          } catch (error) {
             consoleLogger(`Error In getPostTagIdsOfWP: ${error?.message}`);
             throw new Error(`Error In getPostTagIdsOfWP: ${error?.message}`);
          }
       }
-      console.log(tagIds);
       return tagIds?.filter(e => e);
    }, 12)();
 }

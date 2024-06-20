@@ -187,7 +187,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
                         const tagIds = await getPostTagIdsOfWP(constant?.tagUri(infos?.domain), [playerOneTag, playerTwoTag, eventTag, playerVsPlayerTag], token);
 
-                        if (!Array.isArray(tagIds) || tagIds.length !== 3) {
+                        if (!Array.isArray(tagIds) || tagIds.length === 0) {
                            throw new Error(`S-${postCounter}. Tags are not created. Terminate the request.`);
                         }
 
