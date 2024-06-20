@@ -138,7 +138,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         const playerOneTag = resource?.playerTag?.replace("#playerName", playerOne);
                         const playerTwoTag = resource?.playerTag?.replace("#playerName", playerTwo);
                         const playerVsPlayerTag = resource?.playerVsPlayerTag ?
-                           resource?.playerVsPlayerTag?.replace("#playerOneSurname", playerOneSurname)?.replace("#playerTwoSurname", playerTwoSurname) : null;
+                           resource?.playerVsPlayerTag?.replace("#playerOneSurname", playerOneSurname)?.replace("#playerTwoSurname", playerTwoSurname) : "";
 
                         const eventTag = resource?.eventTag?.replace("#eventName", infos?.nick === "sg" ? eventName : plainEventName);
 

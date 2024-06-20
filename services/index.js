@@ -24,8 +24,6 @@ async function checkExistingPostOfWP(url, token) {
    return retryOperation(async () => {
 
       const data = await xhrGetRequest(url, token, "json");
-
-      console.log(data);
       if (!Array.isArray(data)) {
          console.log(data);
          throw new Error(`Invalid response.`);
@@ -40,7 +38,7 @@ async function getPostTagIdsOfWP(url, tags, token) {
    return retryOperation(async () => {
       const tagIds = [];
 
-      const finalTags = tags.filter(e => e);
+      const finalTags = tags.filter(e => e?.trim().length > 0);
 
       for (const tag of finalTags) {
          try {
@@ -53,11 +51,14 @@ async function getPostTagIdsOfWP(url, tags, token) {
             } else {
                tagIds.push(result?.id);
             }
+
+            console.log(result?.id);
          } catch (error) {
             consoleLogger(`Error In getPostTagIdsOfWP: ${error?.message}`);
             throw new Error(`Error In getPostTagIdsOfWP: ${error?.message}`);
          }
       }
+      console.log(tagIds);
       return tagIds?.filter(e => e);
    }, 12)();
 }
