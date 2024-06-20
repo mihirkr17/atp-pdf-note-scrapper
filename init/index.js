@@ -71,7 +71,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
             // Extracting match details from pdf contents | basically it returns [Array];
             const contents = extractMatchInfo(pdfTextContents);
-            
+
             if (!Array.isArray(contents) || contents.length === 0) {
                continue;
             }
@@ -183,12 +183,12 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
                         consoleLogger(`S-${postCounter}. Post language: ${resource?.language}.`);
                         consoleLogger(`S-${postCounter}. Event Day: ${eventDay}.`);
-                        consoleLogger(`S-${postCounter}. Tags generating for ${playerOneTag}, ${playerTwoTag}, ${eventTag}`);
+                        consoleLogger(`S-${postCounter}. Tags are ${playerVsPlayerTag}, ${playerOneTag}, ${playerTwoTag}, ${eventTag} will create.`);
 
                         const tagIds = await getPostTagIdsOfWP(constant?.tagUri(infos?.domain), [playerOneTag, playerTwoTag, eventTag, playerVsPlayerTag], token);
 
                         if (!Array.isArray(tagIds) || tagIds.length !== 3) {
-                           throw new Error(`S-${postCounter}. Tag generation failed. Terminate the request.`);
+                           throw new Error(`S-${postCounter}. Tags are not created. Terminate the request.`);
                         }
 
                         consoleLogger(`S-${postCounter}. Tags generated. Tag Id's: ${tagIds}`);

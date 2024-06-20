@@ -98,7 +98,7 @@ const matchstats = [
       categoryId: 4339,
       title: "Who Will Win #playerOneSurname vs #playerTwoSurname? Prediction For ATP #eventName #eventYear",
       playerTag: "#playerName PREDICTIONS",
-      playerVsPlayerTag: "#playerOneSurname VS playerTwoSurname H2H PREDICTIONS",
+      playerVsPlayerTag: "#playerOneSurname VS #playerTwoSurname H2H PREDICTIONS",
       eventTag: "ATP #eventName PREDICTIONS, PICKS & BEST BETS",
       contents: function (eventName,
          leads,
