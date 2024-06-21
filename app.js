@@ -68,15 +68,15 @@ function dateChecker(dateRange) {
       }
 
       const sites = [
-         // {
-         //    id: 1,
-         //    siteName: "stevegtennis",
-         //    nick: "sg",
-         //    domain: constant?.domainSg,
-         //    authToken: constant?.authTokenSg,
-         //    authorId: constant?.authorIdSg,
-         //    chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
-         // },
+         {
+            id: 1,
+            siteName: "stevegtennis",
+            nick: "sg",
+            domain: constant?.domainSg,
+            authToken: constant?.authTokenSg,
+            authorId: constant?.authorIdSg,
+            chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
+         },
          {
             id: 2,
             siteName: "matchstat",
