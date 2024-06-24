@@ -77,15 +77,15 @@ function dateChecker(dateRange) {
             authorId: constant?.authorIdSg,
             chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
          },
-         {
-            id: 2,
-            siteName: "matchstat",
-            nick: "ms",
-            domain: constant?.domainMs,
-            authToken: constant?.authTokenMs,
-            authorId: constant?.authorIdMs,
-            chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
-         }
+         // {
+         //    id: 2,
+         //    siteName: "matchstat",
+         //    nick: "ms",
+         //    domain: constant?.domainMs,
+         //    authToken: constant?.authTokenMs,
+         //    authorId: constant?.authorIdMs,
+         //    chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
+         // }
       ];
 
 
@@ -114,9 +114,10 @@ function dateChecker(dateRange) {
             const links = note?.pdfLinks;
 
 
+            //links.slice(0, 1)
 
             if (isValidDate && Array.isArray(links) && links.length >= 1) {
-               const result = await init(site, links.slice(0, 1), location);
+               const result = await init(site, ["/-/media/f79f6de4aaea4d0cb7b1df5ff6f6936c.pdf"], location);
                consoleLogger(`${result?.message} for ${site?.siteName}`);
             }
          }

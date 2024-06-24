@@ -233,7 +233,7 @@ function extractMatchInfo(text) {
       const line = splittedTexts[i].trim(); //?.replace(/@ATPMediaInfo.*For the latest stats/g, "")?.replace(/Page \d of \d/gi, "");
 
 
-      if ((/(ATP MEDIA NOTES|\d{4} ROLAND GARROS)/g).test(line)) {
+      if ((/(ATP MEDIA NOTES |\d{4} ROLAND GARROS)/g).test(line)) {
          let evLine = line && line?.match(/\d{4} ROLAND GARROS/i);
          eventNameString = evLine?.[0] || line?.replace(/[–|-]?\s+ATP MEDIA NOTES/g, "") || "";
       }
@@ -278,7 +278,7 @@ function extractMatchInfo(text) {
    const eventDate = dateString;
    const lastIndexOfVLine = placeString.lastIndexOf("|");
    const eventAddress = placeString?.slice(0, lastIndexOfVLine)?.replace(" | ", ", ")?.trim() || "";
-   const eventName = eventNameString;
+   const eventName = "MALLORCA CHAMPIONSHIPS" || eventNameString;
    const eventHeadingTwo = `${eventDay} - ${eventDate}, ${eventAddress}.`;
 
 
