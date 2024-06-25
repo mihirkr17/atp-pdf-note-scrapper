@@ -209,9 +209,11 @@ function findPlayerNames(inputString) {
 }
 
 
-function extractMatchInfo(text) {
+function extractMatchInfo(text, event = {}) {
    // let regddd = /@ATPMediaInfo/gi;
    // let reg2 = /Page \d+ of \d+/gi;
+
+   const { tournamentName, tournamentLocation, tournamentDay } = event;
 
    // console.log(text?.replace(/@ATPMediaInfo[\s\S]*?Page \d+ of \d+/gi, "")?.split("\n"));
    const splittedTexts = text?.split("\n")?.filter(e => e?.trim().length !== 0); //?.filter(e => !regddd.test(e))?.filter(e => !reg2.test(e));
@@ -220,32 +222,23 @@ function extractMatchInfo(text) {
 
    const addrRegex1 = /\b\d{1,2}-\d{1,2} (January|February|March|April|May|June|July|August|September|October|November|December) \d{4}\b/i;
 
-   // console.log(splittedTexts);
-
-   // console.log(splittedTexts);
    let dateString = "";
    let placeString = "";
-   let eventNameString = "";
-   let eventDayString = "";
+   // let eventNameString = "";
 
    for (let i = 0; i < splittedTexts.length; i++) {
 
       const line = splittedTexts[i].trim(); //?.replace(/@ATPMediaInfo.*For the latest stats/g, "")?.replace(/Page \d of \d/gi, "");
 
 
-      if ((/(ATP MEDIA NOTES |\d{4} ROLAND GARROS)/g).test(line)) {
-         let evLine = line && line?.match(/\d{4} ROLAND GARROS/i);
-         eventNameString = evLine?.[0] || line?.replace(/[–|-]?\s+ATP MEDIA NOTES/g, "") || "";
-      }
+      // if ((/(ATP MEDIA NOTES |\d{4} ROLAND GARROS)/g).test(line)) {
+      //    let evLine = line && line?.match(/\d{4} ROLAND GARROS/i);
+      //    eventNameString = evLine?.[0] || line?.replace(/[–|-]?\s+ATP MEDIA NOTES/g, "") || "";
+      // }
 
       if ((/(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)[, -]? \d+ [A-Z][a-z]+ \d{4}/i).test(line)) {
          let dates = line.match(/[A-Z][a-z]+ \d+ [A-Z][a-z]+ \d{4}/);
          dateString = dates?.[0];
-      }
-
-      if ((/DAY \d+/).test(line)) {
-         let day = line?.match(/DAY \d+/);
-         eventDayString = day?.[0];
       }
 
       if (addrRegex1.test(line)) {
@@ -274,11 +267,11 @@ function extractMatchInfo(text) {
 
 
    // new variables
-   const eventDay = eventDayString;
+   const eventDay = tournamentDay;
    const eventDate = dateString;
    const lastIndexOfVLine = placeString.lastIndexOf("|");
    const eventAddress = placeString?.slice(0, lastIndexOfVLine)?.replace(" | ", ", ")?.trim() || "";
-   const eventName = "MALLORCA CHAMPIONSHIPS" || eventNameString;
+   const eventName = capitalizeFirstLetterOfEachWord(tournamentName); // || eventNameString;
    const eventHeadingTwo = `${eventDay} - ${eventDate}, ${eventAddress}.`;
 
 

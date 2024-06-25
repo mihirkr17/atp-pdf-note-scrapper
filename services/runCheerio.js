@@ -19,31 +19,41 @@ async function runCheerio(url) {
 
             // Tournament details... 
             const tournamentDetails = $(notes).find(".tournament-details > .details-holder > .details");
-            const tournamentLocation = $(tournamentDetails).find(".location").text();
-            const tournamentDate = $(tournamentDetails).find("span.dates").text();
+            const tournamentLocation = $(tournamentDetails).find(".location").text() || "";
+            const tournamentDate = $(tournamentDetails).find("span.dates").text() || "";
+            const tournamentName = $(tournamentDetails).find("h3 > a").text() || "";
 
             // Media Note urls...
             const mediaNotes = $(notes).find(".notes-documents > ul.daily-media-notes");
             const mNotes = $(mediaNotes).find("li");
 
             const pdfLinks = [];
+            let largest = 0;
 
             mNotes.each((_, li) => {
                const title = $(li).find("span").text();
                const link = $(li).find("a").attr("href");
 
                if (title.match(/Media Notes/g)) {
-                  pdfLinks.push(link)
+                  const day = title && title.match(/Day \d+/gi)?.[0];
+                  const dayInt = day && day.match(/\d+/)?.[0];
+                  pdfLinks.push({ link, day, dayInt: parseInt(dayInt) })
                }
             })
 
-            links.push({ tournamentLocation, tournamentDate, pdfLinks });
+            const lin = pdfLinks?.map(e => e.dayInt);
+
+            const maxDayNumber = lin && Math.max(...lin);
+
+            const newLink = pdfLinks && pdfLinks.find(e => maxDayNumber === e.dayInt);
+
+            links.push({ tournamentLocation, tournamentDate, pdfLink: newLink?.link, tournamentDay: newLink?.day, tournamentName });
 
             // const documents = $(notes).find(".notes-documents");
          })
       }
 
-     return links;
+      return links;
 
       // const ul = $('ul.daily-media-notes li');
 

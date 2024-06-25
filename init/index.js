@@ -26,60 +26,75 @@ const translate = (...args) =>
 translate.engine = 'libre';
 translate.key = process.env.LIBRE_TRANSLATE_KEY;
 
-async function init(infos, mediaNoteUrls, tournamentLocation) {
+
+
+const sites = [
+   {
+      id: 1,
+      siteName: "Stevegtennis",
+      siteCode: "sg",
+      siteDomain: constant?.domainSg,
+      authToken: constant?.authTokenSg,
+      authorId: constant?.authorIdSg,
+      template: stevegtennis,
+      chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
+   },
+   {
+      id: 2,
+      siteName: "Matchstat",
+      siteCode: "ms",
+      siteDomain: constant?.domainMs,
+      authToken: constant?.authTokenMs,
+      authorId: constant?.authorIdMs,
+      template: matchstats,
+      chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
+   }
+];
+
+async function init({ tournamentLocation = "", pdfLink = "", tournamentDay = "", tournamentName = "" }) {
    try {
 
-      const resources = infos?.nick === "sg" ? stevegtennis : matchstats;
+      const pop = `[${tournamentName} - ${tournamentDay}]`;
 
-      if (!resources || !Array.isArray(resources)) {
-         throw new Error(`Resource not found.`);
-      }
-
-      consoleLogger("Resource found.");
-
-      consoleLogger(`Script started for ${infos?.domain}.`);
-
-      // Basic wordpress authentication
-      const token = infos?.authToken;
-
-      if (!token) {
-         throw new Error(`Sorry! Auth token not found.`);
-      }
-
-      consoleLogger(`Found auth token successfully.`);
-
-      let indexOfPdf = 1;
       let postCounter = 0;
       const minContentCharacters = 800;
 
-      for (const mediaNoteUrl of mediaNoteUrls) {
+      // Download pdf by link and extracted contents by Pdf parser.
+      const pdfNoteUrl = constant.pdfUri(pdfLink);
 
+      consoleLogger(`Downloading pdf from ${pdfNoteUrl}...`);
+
+      const pdfTexts = await downloadPDF(pdfNoteUrl);
+
+      if (!pdfTexts || typeof pdfTexts !== "string" || pdfTexts.length < 0) {
+         return { message: `${pop} Sorry no pdf text found.` }
+      }
+
+      consoleLogger(`${pop} PDF texts found. Extracting contents...`);
+
+      // Extracting match details from pdf contents | basically it returns [Array];
+      const contents = extractMatchInfo(pdfTexts, { tournamentName, tournamentLocation, tournamentDay });
+
+      if (!Array.isArray(contents) || contents.length === 0) {
+         return { message: `${pop} Sorry! No post content found.` };
+      }
+
+      consoleLogger(`Pdf downloaded and extracted contents successfully.`);
+
+      for (const site of sites) {
+         const { siteDomain, siteCode, siteName, template, chatgptCommand, authorId, authToken } = site;
+
+         consoleLogger(`Total ${contents.length * template?.length} posts will create.`);
          try {
 
-            // Download pdf by link and extracted contents by Pdf parser.
-            const pdfNoteUrl = constant.pdfUri(mediaNoteUrl);
+            // Basic wordpress authentication
+            const token = authToken;
 
-            consoleLogger(`Link-${indexOfPdf}. ${pdfNoteUrl}.`);
-
-            const pdfTextContents = await downloadPDF(pdfNoteUrl);
-
-            if (!pdfTextContents) {
-               continue;
+            if (!token) {
+               consoleLogger(`Sorry! ${siteName} auth token not found.`);
             }
 
-            consoleLogger(`Successfully got PDF texts.`);
-
-            // Extracting match details from pdf contents | basically it returns [Array];
-            const contents = extractMatchInfo(pdfTextContents);
-
-            if (!Array.isArray(contents) || contents.length === 0) {
-               continue;
-            }
-
-            consoleLogger(`Total ${contents.length} posts will create.`);
-
-
-            consoleLogger(`Pdf downloaded and extracted contents successfully.`);
+            consoleLogger(`${siteName} auth token found.`);
 
             for (const content of contents) {
                const playerOne = content?.player1;
@@ -104,7 +119,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                   continue;
                }
 
-               if (content.length < minContentCharacters) {
+               if (text.length < minContentCharacters) {
                   consoleLogger(`S-${postCounter}. Post skipped due to content less than ${minContentCharacters} characters.`);
                   continue;
                }
@@ -112,22 +127,22 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                try {
                   let playerOneMedia = {}, playerTwoMedia = {};
 
-                  playerOneMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, player1slug), token);
-                  playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, player2slug), token);
+                  playerOneMedia = await getMediaIdOfWP(constant.mediaUri(siteDomain, player1slug), token);
+                  playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(siteDomain, player2slug), token);
 
                   if (!playerOneMedia?.mediaId) {
-                     playerOneMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
+                     playerOneMedia = await getMediaIdOfWP(constant.mediaUri(siteDomain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
                   }
 
                   if (!playerTwoMedia?.mediaId) {
-                     playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(infos?.domain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
+                     playerTwoMedia = await getMediaIdOfWP(constant.mediaUri(siteDomain, `generic${Math.floor(Math.random() * 10) + 1}`), token);
                   }
 
 
-                  const imageWrapperHtml = imgWrapper([playerOneMedia, playerTwoMedia], playerOneSurname, playerTwoSurname, infos?.nick);
+                  const imageWrapperHtml = imgWrapper([playerOneMedia, playerTwoMedia], playerOneSurname, playerTwoSurname, siteCode);
 
 
-                  await Promise.all(resources.map(async (resource) => {
+                  await Promise.all(template.map(async (resource) => {
                      try {
                         if (!resource?.categoryId || !resource?.category || !resource?.language || !resource?.eventTag) {
                            throw new Error("Something went wrong.");
@@ -141,7 +156,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         const playerVsPlayerTag = resource?.playerVsPlayerTag ?
                            resource?.playerVsPlayerTag?.replace("#playerOneSurname", playerOneSurname)?.replace("#playerTwoSurname", playerTwoSurname) : "";
 
-                        const eventTag = resource?.eventTag?.replace("#eventName", infos?.nick === "sg" ? eventName : plainEventName);
+                        const eventTag = resource?.eventTag?.replace("#eventName", siteCode === "sg" ? eventName : plainEventName);
 
                         const [eventHeadingTwoTranslate, eventAddressTranslate, eventDayTranslate, eventDateTranslate] = await Promise.all([
                            translate(eventHeadingTwo, { from: 'en', to: resource?.languageCode }),
@@ -152,14 +167,14 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
                         let newTitle = "";
 
-                        if (infos?.nick === "sg") {
+                        if (siteCode === "sg") {
                            newTitle = resource?.title?.replace("#eventName", eventName)
                               ?.replace("#playerOne", playerOne)
                               ?.replace("#playerTwo", playerTwo)
                               ?.replace("#eventDate", eventDateTranslate);
                         }
 
-                        if (infos?.nick === "ms") {
+                        if (siteCode === "ms") {
                            newTitle = resource?.title?.replace("#eventName", plainEventName)
                               ?.replace("#playerOneSurname", playerOneSurname)
                               ?.replace("#playerTwoSurname", playerTwoSurname)
@@ -175,7 +190,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
 
 
                         // Checking exist post in the db
-                        const isUniquePost = await checkExistingPostOfWP(constant?.postExistUri(infos?.domain, slug), token);
+                        const isUniquePost = await checkExistingPostOfWP(constant?.postExistUri(siteDomain, slug), token);
 
                         if (isUniquePost) {
                            consoleLogger(`S-${postCounter}. Post already exists.`);
@@ -186,7 +201,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         consoleLogger(`S-${postCounter}. Event Day: ${eventDay}.`);
                         consoleLogger(`S-${postCounter}. Tags are ${playerVsPlayerTag}, ${playerOneTag}, ${playerTwoTag}, ${eventTag} will create.`);
 
-                        const tagIds = await getPostTagIdsOfWP(constant?.tagUri(infos?.domain), [playerOneTag, playerTwoTag, eventTag, playerVsPlayerTag], token);
+                        const tagIds = await getPostTagIdsOfWP(constant?.tagUri(siteDomain), [playerOneTag, playerTwoTag, eventTag, playerVsPlayerTag], token);
 
                         if (!Array.isArray(tagIds) || tagIds.length === 0) {
                            throw new Error(`S-${postCounter}. Tags are not created. Terminate the request.`);
@@ -195,8 +210,7 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                         consoleLogger(`S-${postCounter}. Tags generated. Tag Id's: ${tagIds}`);
 
                         consoleLogger(`S-${postCounter}. Paraphrase starting...`);
-                        const chatgptCommand = infos?.chatgptCommand?.replace("#language", resource?.language)?.replace("#texts", text);
-                        const paraphrasedBlog = await paraphraseContents(chatgptCommand);
+                        const paraphrasedBlog = await paraphraseContents(chatgptCommand?.replace("#language", resource?.language)?.replace("#texts", text));
                         consoleLogger(`S-${postCounter}. Paraphrased done.`);
 
                         const htmlContent = resource?.contents(
@@ -218,12 +232,12 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                            eventYear, plainEventName);
 
                         consoleLogger(`S-${postCounter}. Post creating...`);
-                        await createPostOfWP(constant?.postUri(infos?.domain), token, {
+                        await createPostOfWP(constant?.postUri(siteDomain), token, {
                            title,
                            slug,
                            content: htmlContent,
                            status: constant?.postStatus,
-                           author: parseInt(infos?.authorId),
+                           author: parseInt(authorId),
                            tags: tagIds,
                            featured_media: playerOneMedia?.mediaId || playerTwoMedia?.mediaId,
                            categories: [categoryId]
@@ -241,13 +255,14 @@ async function init(infos, mediaNoteUrls, tournamentLocation) {
                   await delay(1000);
                }
             }
-            indexOfPdf++;
+
          } catch (error) {
-            consoleLogger(`Error In mediaNoteUrl Model: ${error.message}.`);
-            await delay(1000);
+            consoleLogger(`Error In ${siteName}: ${error?.message}.`);
             continue;
          }
       }
+
+
 
       return { message: `${postCounter >= 1 ? `Total ${postCounter} posts created.` : "No posts have been created."} Operation done.` };
    } catch (error) {

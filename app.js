@@ -91,8 +91,7 @@ function dateChecker(dateRange) {
 
       // Getting pdf first link
       let mediaNoteUrls = await getPdfLinks(constant?.atpNoteUri);
-
-      mediaNoteUrls = mediaNoteUrls && mediaNoteUrls.filter(mediaNoteUrl => mediaNoteUrl?.pdfLinks.length > 0);
+      mediaNoteUrls = mediaNoteUrls && mediaNoteUrls.filter(e => e);
 
       const lengthOfMediaNoteLinks = mediaNoteUrls.length || 0;
 
@@ -101,26 +100,23 @@ function dateChecker(dateRange) {
          return;
       }
 
+      for (const note of mediaNoteUrls) {
 
+         const isValidDate = dateChecker(note?.tournamentDate);
+
+         if (isValidDate) {
+            const result = await init(note);
+            consoleLogger(`${result?.message}`);
+         }
+      }
+
+      return
 
       // Operation will run here
       for (const site of sites) {
          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
 
-         for (const note of mediaNoteUrls) {
 
-            const isValidDate = dateChecker(note?.tournamentDate);
-            const location = note?.tournamentLocation;
-            const links = note?.pdfLinks;
-
-
-            //links.slice(0, 1)
-
-            if (isValidDate && Array.isArray(links) && links.length >= 1) {
-               const result = await init(site, ["/-/media/f79f6de4aaea4d0cb7b1df5ff6f6936c.pdf"], location);
-               consoleLogger(`${result?.message} for ${site?.siteName}`);
-            }
-         }
 
       }
 
