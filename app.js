@@ -67,27 +67,6 @@ function dateChecker(dateRange) {
          throw new Error(`ERROR: Author id must be set as "AUTHOR_ID_SG=12345 | AUTHOR_ID_MS=12345" in .env`);
       }
 
-      const sites = [
-         {
-            id: 1,
-            siteName: "stevegtennis",
-            nick: "sg",
-            domain: constant?.domainSg,
-            authToken: constant?.authTokenSg,
-            authorId: constant?.authorIdSg,
-            chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
-         },
-         {
-            id: 2,
-            siteName: "matchstat",
-            nick: "ms",
-            domain: constant?.domainMs,
-            authToken: constant?.authTokenMs,
-            authorId: constant?.authorIdMs,
-            chatgptCommand: 'With your reply in #language, including all facts in this text, rewrite "#texts"'
-         }
-      ];
-
 
       // Getting pdf first link
       let mediaNoteUrls = await getPdfLinks(constant?.atpNoteUri);
@@ -109,89 +88,6 @@ function dateChecker(dateRange) {
             consoleLogger(`${result?.message}`);
          }
       }
-
-      return
-
-      // Operation will run here
-      for (const site of sites) {
-         consoleLogger(`${site?.id}. Running ${site?.siteName}`);
-
-
-
-      }
-
-
-
-      // for (const note of mediaNoteUrls) {
-
-      //    const isValidDate = dateChecker(note?.tournamentDate);
-      //    const location = note?.tournamentLocation;
-      //    const links = note?.pdfLinks;
-
-      //    if (isValidDate && Array.isArray(links) && links.length >= 1) {
-
-      //       // Operation will run here
-      //       for (const site of sites) {
-      //          consoleLogger(`${site?.id}. Running ${site?.siteName}`);
-      //          const result = await init(site, links, location);
-
-      //          consoleLogger(`${result?.message} for ${site?.siteName}`);
-      //       }
-      //    }
-      // }
-
-
-      // console.log(mediaNoteUrls);
-
-      // return;
-
-      // const lengthOfMediaNoteLinks = mediaNoteUrls.length || 0;
-
-      // if (lengthOfMediaNoteLinks <= 0) {
-      //    consoleLogger(`Sorry no media note urls available right now!`);
-      //    return;
-      // }
-
-      // // changed
-      // mediaNoteUrls = mediaNoteUrls.slice(0, 1);
-      // // let mediaNoteUrls = ["/-/media/2c1974484f09488e8d9b510b14b9b69d.pdf"]
-
-
-      // consoleLogger(`Found ${lengthOfMediaNoteLinks} media note urls.`);
-
-      // for (const site of sites) {
-      //    consoleLogger(`${site?.id}. Running ${site?.siteName}`);
-      //    const result = await init(site, mediaNoteUrls);
-
-      //    consoleLogger(`${result?.message} for ${site?.siteName}`);
-      // }
-
-
-
-
-      // return;
-      // const result = await init();
-
-      // consoleLogger(`${result?.message}`);
-
-
-      // schedule.scheduleJob(scheduleJobTime, async function () {
-      //    try {
-      //       const isSchedule = constant?.scheduleAction === "ON" ? true : false;
-
-      //       consoleLogger(`Function will run every ${scheduleTime} ${scheduleTimeLabel}.`);
-
-      //       if (isSchedule) {
-      //          const result = await init();
-      //          consoleLogger(`${result?.message}`);
-      //       } else {
-      //          consoleLogger("Schedule off.");
-      //       }
-      //    } catch (error) {
-      //       throw error;
-      //    }
-      // });
-
    } catch (error) {
       consoleLogger(error?.message);
    }
