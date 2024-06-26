@@ -29,16 +29,16 @@ translate.key = process.env.LIBRE_TRANSLATE_KEY;
 
 
 const sites = [
-   {
-      id: 1,
-      siteName: "Stevegtennis",
-      siteCode: "sg",
-      siteDomain: constant?.domainSg,
-      authToken: constant?.authTokenSg,
-      authorId: constant?.authorIdSg,
-      template: stevegtennis,
-      chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
-   },
+   // {
+   //    id: 1,
+   //    siteName: "Stevegtennis",
+   //    siteCode: "sg",
+   //    siteDomain: constant?.domainSg,
+   //    authToken: constant?.authTokenSg,
+   //    authorId: constant?.authorIdSg,
+   //    template: stevegtennis,
+   //    chatgptCommand: "Rewrite this in #language, not adding extra facts that are not in this text, reply in paragraph form, in an interesting tennis journalistic manner with a long as possible reply: #texts"
+   // },
    {
       id: 2,
       siteName: "Matchstat",
