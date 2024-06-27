@@ -1,95 +1,3 @@
-const advertisements = `<div style="padding: 10px 0;">
-   <style>
-.advertisement_container{padding:10px;width:100%;font-family:"Geomanist Medium",Sans-serif}.advertisement_wrapper{box-shadow:0 0 8px 0 #10bd7f;background-color:#fff;border-top-right-radius:10px;border-bottom-right-radius:10px}.add_price_table__ribbon_inner,.advertisement_btn{background-color:#10bd7f;color:#fff;text-align:center}.advertisement_row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative}.advertisement_column{flex:1;width:100%}.add_price_table__ribbon{position:absolute;top:0;width:150px;overflow:hidden;height:100px;transform:rotate(0);left:0;right:auto}.add_price_table__ribbon_inner{margin-top:30px;transform:translateY(-50%) translateX(-50%) translateX(30px) rotate(-45deg);font-family:Rajdhani,Sans-serif;font-size:14px;font-weight:600;width:100%;height:25px;line-height:25px}.advertisement_price_table{display:flex;flex-direction:column}.advertisement_table_price_header{text-align:center;padding:20px;flex:1}.advertisement_table_price_header h3{font-size:1rem}.advertisement_table__price{flex:1;display:flex;flex-direction:row;justify-content:center;align-items:baseline}.advertisement_price_table__integer_part{font-size:3rem;font-weight:700}.advertisement_price_table__currency{font-weight:500}.advertisement_price_table__after_price{display:flex;align-items:start;flex-direction:column;padding-left:4px;line-height:.9}.icon_list_item,.icon_list_item_icon{align-items:center;display:flex}.widget_container{display:flex}ul.icon_list_items{column-count:2}.icon_list_item{list-style:none;justify-content:start;gap:7px;margin:0 0 5px}span.icon_list_item_text{color:#606060}.advertisement_button_wrapper{display:flex;align-items:center;justify-content:center;padding:20px}.advertisement_btn{text-decoration:none;font-weight:400;display:inline-block;line-height:1;font-size:15px;padding:12px 24px;border-radius:3px;fill:#fff;transition:.3s}.col2{flex:2!important}.responsive{display:none}.advertisement_table_price_section{background-color:#61cE7026;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}@media (max-width:767px){.responsive{display:flex}.advertisement_row{flex-direction:column}.advertisement_table_price_section{background-color:rgb(163 225 164)}ul.icon_list_items{column-count:1}.icon_list_item{margin:0 0 10px}.advertisement_table_price_header h3{font-size:1rem}}
-   </style>
-
-   <div class="advertisement_container">
-      <div class="advertisement_wrapper">
-         <div class="advertisement_row">
-            <div class="advertisement_column">
-               <div class="widget_wrap">
-                  <div class="advertisement_price_table">
-                     <div class="advertisement_table_price_header">
-                        <h3>Tennis Predictions</h3>
-                     </div>
-                     <div class="advertisement_table_price_section">
-                        <div class="advertisement_table__price">
-                           <span style="margin-right: 15px; text-decoration-line: line-through; color: gray">
-                              $49.99
-                           </span>
-                           <span class="advertisement_price_table__integer_part">
-                              <small style="font-size: 1rem;">$</small>19<small style="font-size: 1rem;">.99</small>
-                           </span>
-                           <span style="color: black;">&nbsp;Per Month</span>
-                        </div>
-                        <h4 class="responsive">No contract, cancel anytime</h4>
-                     </div>
-                  </div>
-                  <div class="add_price_table__ribbon">
-                     <div class="add_price_table__ribbon_inner">
-                        Popular </div>
-                  </div>
-               </div>
-            </div>
-            <div class="advertisement_column col2">
-               <div class="widget_wrap">
-                  <div style="position: relative; padding: 20px 30px;">
-                     <div class="widget_container">
-                        <link rel="stylesheet"
-                           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-                           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-                           crossorigin="anonymous" referrerpolicy="no-referrer" />
-                        <ul class="icon_list_items">
-                           <li class="icon_list_item">
-                              <span class="icon_list_item_icon">
-                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
-                              <span class="icon_list_item_text">Unlimited Daily Tennis Predictions</span>
-                           </li>
-                           <li class="icon_list_item">
-                              <span class="icon_list_item_icon">
-                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
-                              <span class="icon_list_item_text"> Unlock the Best Value Bets</span>
-                           </li>
-                           <li class="icon_list_item">
-                              <span class="icon_list_item_icon">
-                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
-                              <span class="icon_list_item_text">Personalized tips to your mailbox</span>
-                           </li>
-                           <li class="icon_list_item">
-                              <span class="icon_list_item_icon">
-                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
-                              <span class="icon_list_item_text">Live chat with our prediction experts</span>
-                           </li>
-                           <li class="icon_list_item">
-                              <span class="icon_list_item_icon">
-                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
-                              <span class="icon_list_item_text">Filter Predictions (Level &amp;
-                                 Surface)</span>
-                           </li>
-                           <li class="icon_list_item responsive">
-                              <span class="icon_list_item_icon">
-                                 <i aria-hidden="true" style="color: #10BD7F;" class="far fa-check-circle"></i> </span>
-                              <span class="icon_list_item_text">CANCEL ANYTIME</span>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="advertisement_column">
-               <div class="advertisement_button_wrapper">
-                  <a class="advertisement_btn"
-                     href="https://matchstat.com/predictions-tips/register/tennis-match-winner-pro-monthly/">
-                     <span>SIGN ME UP</span>
-                  </a>
-               </div>
-
-            </div>
-         </div>
-      </div>
-   </div>
-</div>`
-
 const matchstats = [
    {
       language: "English",
@@ -127,7 +35,6 @@ const matchstats = [
             ${playerOneSurname} and ${playerTwoSurname} are on the ${eventDay} Schedule at ${plainEventName} ${eventYear} on ${eventDate}. Lets breakdown the career, past stats and recent form of these players and predict who will get the victory.
             </p>`.replace(/\n/g, " ")}    
          <br/>
-         <?php echo do_shortcode("[elementor-template id='55914']"); ?>
          <br/>
          <h3>Who Will Win In This Head-To-Head?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
@@ -177,7 +84,7 @@ const matchstats = [
             ${`<p>
             ${playerOneSurname} y ${playerTwoSurname} están en el programa de ${eventDay} en ${plainEventName} ${eventYear} el ${eventDate}. Analicemos la carrera, las estadísticas pasadas y la forma reciente de estos jugadores y pronostiquemos quién obtendrá la victoria.
             </p>`.replace(/\n/g, " ")}
-            <br/>${advertisements}<br/>
+            <br/><br/>
             <h3>¿Quién ganará en este cara a cara?</h3>
             <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
             <br/> <br/>
@@ -226,7 +133,7 @@ const matchstats = [
             ${`<p>
             ${playerOneSurname} e ${playerTwoSurname} estão na programação ${eventDay} em ${plainEventName} ${eventYear} em ${eventDate}. Vamos analisar a carreira, as estatísticas anteriores e a forma recente desses jogadores e prever quem conseguirá a vitória.
             </p>`.replace(/\n/g, " ")}
-            <br/>${advertisements}<br/>
+            <br/><br/>
             <h3>Quem vencerá neste confronto direto?</h3>
             <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
             <br/> <br/>
@@ -276,7 +183,7 @@ const matchstats = [
             ${`<p>
             ${playerOneSurname} et ${playerTwoSurname} sont inscrits au programme ${eventDay} à ${plainEventName} ${eventYear} le ${eventDate}. Décomposons la carrière, les statistiques passées et la forme récente de ces joueurs et prédisons qui remportera la victoire.
             </p>`.replace(/\n/g, " ")}
-            <br/>${advertisements}<br/>
+            <br/><br/>
             <h3>Qui va gagner dans ce face-à-face ?</h3>
             <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
             <br/> <br/>
@@ -326,7 +233,7 @@ const matchstats = [
             ${`<p>
             ${playerOneSurname} und ${playerTwoSurname} stehen am ${eventDate} um ${plainEventName} ${eventYear} im ${eventDay}-Zeitplan. Lassen Sie uns die Karriere, die vergangenen Statistiken und die aktuelle Form dieser Spieler aufschlüsseln und vorhersagen, wer den Sieg erringen wird.
             </p>`.replace(/\n/g, " ")}
-            <br/>${advertisements} <br/>
+            <br/> <br/>
             <h3>Wer wird in diesem direkten Duell gewinnen?</h3>
             <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
             <br/> <br/>
@@ -377,7 +284,7 @@ const matchstats = [
             ${`<p>
             ${playerOneSurname} e ${playerTwoSurname} sono nel programma dell'${eventDay} al ${plainEventName} ${eventYear} il ${eventDate}. Analizziamo la carriera, le statistiche passate e la forma recente di questi giocatori e pronostici chi otterrà la vittoria.
             </p>`.replace(/\n/g, " ")}
-            <br/>${advertisements} <br/>
+            <br/> <br/>
             <h3>Chi vincerà in questo testa a testa?</h3>
             <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
             <br/> <br/>
@@ -427,7 +334,7 @@ const matchstats = [
           ${`<p>
           ${playerOneSurname} i ${playerTwoSurname} pojawią się w harmonogramie ${eventDay} o godzinie ${plainEventName} ${eventYear} w dniu ${eventDate}. Przeanalizujmy karierę, przeszłe statystyki i obecną formę tych graczy i przewidźmy, kto odniesie zwycięstwo.
           </p>`.replace(/\n/g, " ")}
-          <br/>${advertisements}<br/>
+          <br/><br/>
           <h3>Kto wygra w tym pojedynku?</h3>
           <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
           <br/> <br/>
@@ -477,7 +384,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} en ${playerTwoSurname} staan ​​op het ${eventDay} schema om ${plainEventName} ${eventYear} op ${eventDate}. Laten we de carrière, statistieken uit het verleden en de recente vorm van deze spelers uitsplitsen en voorspellen wie de overwinning zal behalen.
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>Wie zal winnen in deze onderlinge strijd?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -527,7 +434,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} ve ${playerTwoSurname}, ${eventDate} tarihinde ${plainEventName} ${eventYear} ${eventDay} Programında yer alıyor. Bu oyuncuların kariyerlerini, geçmiş istatistiklerini ve son formlarını inceleyelim ve zaferi kimin kazanacağını tahmin edelim.
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>Bu Karşılıklı Mücadelede Kim Kazanacak?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -577,7 +484,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} 和 ${playerTwoSurname} 的 ${eventDay} 日程表将于 ${eventDate} ${plainEventName} ${eventYear} 进行。让我们分析一下这些球员的职业生涯、过去的统计数据和最近的表现，并预测谁将获得胜利。
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>谁会在这场正面交锋中获胜？</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -627,7 +534,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} و${playerTwoSurname} موجودان في جدول ${eventDay} في ${plainEventName} ${eventYear} في ${eventDate}. دعونا نفصل المهنة والإحصائيات السابقة والشكل الأخير لهؤلاء اللاعبين ونتوقع من سيحقق النصر.
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>من سيفوز في هذه المواجهة المباشرة؟</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -677,7 +584,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} と ${playerTwoSurname} は、${eventDate} の ${plainEventName} ${eventYear} の ${eventDay} スケジュールに参加しています。これらの選手のキャリア、過去の統計、最近の調子を分析し、誰が勝利を得るのかを予想してみましょう。
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>この直接対決で勝つのは誰ですか?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -727,7 +634,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} и ${playerTwoSurname} включены в расписание ${eventDay} в ${plainEventName} ${eventYear} ${eventDate}. Давайте разберем карьеру, прошлую статистику и недавнюю форму этих игроков и предскажем, кто одержит победу.
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>Кто победит в этом противостоянии?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
@@ -777,7 +684,7 @@ const matchstats = [
          ${`<p>
          ${playerOneSurname} और ${playerTwoSurname} ${eventDate} को ${plainEventName} ${eventYear} पर ${eventDay} शेड्यूल पर हैं। आइए इन खिलाड़ियों के करियर, पिछले आंकड़ों और हालिया फॉर्म का विश्लेषण करें और भविष्यवाणी करें कि जीत किसे मिलेगी।
          </p>`.replace(/\n/g, " ")}
-         <br/>${advertisements}<br/>
+         <br/><br/>
          <h3>इस आमने-सामने की लड़ाई में कौन जीतेगा?</h3>
          <p>${paraphrasedBlog && paraphrasedBlog?.replace(/^"|"$/g, '')}</p>
          <br/> <br/>
